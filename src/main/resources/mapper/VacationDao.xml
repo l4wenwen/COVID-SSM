@@ -3,6 +3,37 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.zust.se.dao.VacationMapper">
+
+    <!--结果集映射-->
+    <resultMap id="VacationMap" type="Vacation">
+        <!--column数据库中的字段，property实体类的属性-->
+        <result column="vacationNum" property="vacationNum"/>
+        <result column="reason" property="reason"/>
+        <result column="startTime" property="startTime"/>
+        <result column="endTime" property="endTime"/>
+        <result column="requestTime" property="requestTime"/>
+        <result column="way" property="way"/>
+        <result column="state" property="state"/>
+        <association property="user" javaType="cn.edu.zust.se.entity.User">
+            <result column="userNum" property="userNum"/>
+            <result column="userName" property="userName"/>
+        </association>
+    </resultMap>
+
     <!-- 目的：为dao接口方法提供sql语句配置 -->
+    <select id="getVacationListById" resultType="Vacation">
+        SELECT u.userName, v.reason, v.startTime, v.endTime, v.way, v.state, v.requestTime
+        FROM vacation v,
+             user u
+        WHERE v.userNum = u.userNum
+          and u.userNum = #{userNum};
+    </select>
+
+    <select id="getVacationListByDepId" resultType="Vacation">
+        SELECT u.userName, v.reason, v.startTime, v.endTime, v.way, v.state, v.requestTime
+        FROM vacation v,
+             (SELECT userNum, userName FROM user WHERE collegeNum = #{collegeNum}) u
+        WHERE v.userNum = u.userNum;
+    </select>
 
 </mapper>

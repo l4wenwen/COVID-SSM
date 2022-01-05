@@ -3,6 +3,8 @@ package cn.edu.zust.se.entity;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class User {
@@ -16,4 +18,5 @@ public class User {
     private boolean sex;
     private String telephone;
     private Integer state;
+    private List<Vacation> vacations;
 }

@@ -1,13 +1,18 @@
 package cn.edu.zust.se.controller;
 
+import cn.edu.zust.se.dto.Result;
+import cn.edu.zust.se.dto.UserDto;
 import cn.edu.zust.se.entity.User;
 import cn.edu.zust.se.service.UserServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -15,15 +20,77 @@ import java.util.List;
 public class UserController {
     private UserServiceI userService;
 
+    private HttpSession session;
+
     @Autowired
     public void setUserService(UserServiceI userService) {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/listUser", method = RequestMethod.GET)
-    public String listUser(HttpServletRequest request) {
-        List<User> list = userService.getAll();
-        request.setAttribute("userList", list);
-        return "home";
+    @Autowired
+    public void setSession(HttpSession session) {
+        this.session = session;
+    }
+
+
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String userLogin() {
+        return "login";
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String userLogin(Model model, String userNum, String password) {
+        Result<UserDto> result = userService.userLogin(userNum, password);
+        System.out.println(result.toString());
+        if (!result.isSuccess()) {
+            model.addAttribute("error", result.getError());
+            return "login";
+        }
+        session.setAttribute("user", result.getData());
+        return "redirect:/user/userHome";
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String userLogout() {
+        session.invalidate();
+        return "login";
+    }
+
+    @RequestMapping(value = "/userHome", method = RequestMethod.GET)
+    public String userHome() {
+        if (session.getAttribute("user") == null) return "login";
+        return "userHome";
+    }
+
+    @RequestMapping(value = "/profile", method = RequestMethod.GET)
+    public String userProfile(Model model) {
+        UserDto user = (UserDto) session.getAttribute("user");
+        if (user == null) return "login";
+        model.addAttribute("userProfile", userService.getUserProfile(user.getUserNum()).getData());
+        return "profile";
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public String userUpdate(Model model, String telephone) {
+        UserDto user = (UserDto) session.getAttribute("user");
+        if (user == null) return "login";
+        Result<Boolean> result = userService.updateUserTelephone(telephone, user.getUserNum());
+        if (!result.isSuccess()) model.addAttribute("error", result.getError());
+        return "forward:/user/profile";
+    }
+
+    @RequestMapping(value = "/changePassword", method = RequestMethod.POST, produces = {
+            "application/json; charset=utf-8" })
+    @ResponseBody
+    public Result<Boolean> userUpdate(Model model, String password, String repassword) {
+        UserDto user = (UserDto) session.getAttribute("user");
+        if (user == null) return null;
+        return userService.updateUserPassword(password, repassword, user.getUserNum());
+    }
+
+    @RequestMapping(value = "/manager", method = RequestMethod.GET)
+    public String userManage() {
+        if (session.getAttribute("user") == null) return "login";
+        return "userManager";
     }
 }

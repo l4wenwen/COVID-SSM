@@ -1,0 +1,19 @@
+.chart {
+	text-align: left;
+	width: 100%;
+}
+
+.chart .title {
+	color: #A1A1AA;
+}
+
+.chart .title th {
+    padding: 0 0.75rem 0.75rem 0.75rem;
+   	font-weight: 400;
+   	border-bottom: 1px solid #E4E4E7;
+}
+
+.chart .item td {
+	padding: 0.75rem;
+	border-bottom: 1px solid #E4E4E7;
+}

@@ -1,0 +1,132 @@
+.container {
+    padding-left: 14rem;
+    transition: ease-in-out .4s;
+}
+
+.header {
+    background: #FFF;
+    padding: 0 2rem;
+    height: 3.5rem;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    color: #52525B;
+    border-bottom: 1px solid #ddd;
+}
+
+.header .title {
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.header .menu-button {
+    cursor: pointer;
+}
+
+.content {
+    width: 80%;
+    min-height: 88vh;
+    background: #FFF;
+    margin: 1.2rem auto;
+    padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+    box-shadow: 0 0.2rem 1rem 0 #ccc;
+}
+
+.health-code {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.health-info {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+}
+
+.health-info p {
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+#qrcode {
+    border: 0.5rem solid #000;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.health-code {
+    padding: 0.725rem;
+    height: 84vh;
+    border: 2px solid #EEE;
+}
+
+#time {
+    margin-top: 1.5rem;
+}
+
+.submit-button {
+    text-decoration: none;
+    color: #393E46;
+    width: 7rem;
+    height: 2rem;
+    background: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.1rem solid #393E46;
+    transition: .4s;
+    cursor: pointer;
+    font-size: 0.725rem;
+    margin-left: 0.5rem;
+}
+
+.submit-button:hover {
+    color: #FFF;
+    background: #393E46;
+}
+
+.info-form {
+    margin: 1rem 0 0 0;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 1rem;
+}
+
+.info-form-row {
+    display: flex;
+    align-items: center;
+}
+
+.text-box {
+    outline: none;
+    background: none;
+    width: 15rem;
+    height: 2rem;
+    font-size: 1rem;
+    border: 1px solid #393E46;
+    padding-left: 0.5rem;
+    margin: 1rem;
+}
+
+.text-box:disabled {
+    background-color: #EEE;
+}
+
+.info {
+    line-height: 3rem;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.search-area {
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem;
+}

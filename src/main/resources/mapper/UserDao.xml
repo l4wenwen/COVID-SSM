@@ -4,11 +4,36 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.zust.se.dao.UserMapper">
     <!-- 目的：为dao接口方法提供sql语句配置 -->
-    <select id="getAll" resultType="User">
+    <select id="userLogin" resultType="User">
         SELECT
-            id,
-            name
+            *
         FROM
             user
+        WHERE
+            userNum = #{userNum} AND
+            password = #{password}
     </select>
+
+    <select id="getUserById" resultType="User">
+        SELECT
+            *
+        FROM
+            user
+        WHERE
+            userNum = #{userNum}
+    </select>
+
+    <update id="updateUserTelephone">
+        UPDATE user SET
+            telephone = #{telephone}
+        WHERE
+            userNum = #{userNum}
+    </update>
+
+    <update id="updateUserPassword">
+        UPDATE user SET
+            password = #{password}
+        WHERE
+            userNum = #{userNum}
+    </update>
 </mapper>

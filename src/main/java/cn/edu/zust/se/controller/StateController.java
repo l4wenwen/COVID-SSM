@@ -45,8 +45,8 @@ public class StateController {
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     public String stateList(String startTime, String endTime, Model model) {
         UserDto user = (UserDto) session.getAttribute("user");
-        Integer userType = user.getUserType();
-        Result<List<StateDto>> states = stateService.getStateByTime(startTime, endTime, userType);
+        List<StateDto> states = stateService.getStateByTime(startTime, endTime,
+                            user.getUserType(), user.getCollegeNum(), user.getUserNum()).getData();
         model.addAttribute(states);
         return "stateList";
     }

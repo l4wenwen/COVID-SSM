@@ -47,7 +47,7 @@ public class StateController {
         UserDto user = (UserDto) session.getAttribute("user");
         List<StateDto> states = stateService.getStateByTime(startTime, endTime,
                             user.getUserType(), user.getCollegeNum(), user.getUserNum()).getData();
-        model.addAttribute(states);
+        model.addAttribute("states", states);
         return "stateList";
     }
 

@@ -46,7 +46,7 @@
     </update>
 
     <update id="addState">
-        INSERT INTO `state`(stateNum
+        INSERT INTO `state`(
                           userNum,
                           stateTime,
                           isTemperature,
@@ -61,7 +61,7 @@
                           healthCodeType,
                           isOutSchool,
                           isOutCity)
-                   VALUES(#{stateNum},
+                   VALUES(
                           #{userNum},
                           #{stateTime},
                           #{isTemperature},

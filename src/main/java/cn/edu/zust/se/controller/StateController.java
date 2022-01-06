@@ -47,11 +47,20 @@ public class StateController {
 
     @RequestMapping(value = "/request", method = RequestMethod.POST)
     public String stateRequest(State state) {
+        if (session.getAttribute("user") == null) return "login";
         UserDto user = (UserDto) session.getAttribute("user");
         state.setUserNum(user.getUserNum());
         state.setStateTime(TimeUtil.getDate());
         stateService.delState(TimeUtil.getDate(), user.getUserNum());
         stateService.addState(state);
         return "stateSuccess";
+    }
+
+    @RequestMapping(value = "/getstate", method = {RequestMethod.GET, RequestMethod.POST})
+    public String getState(Model model) {
+        UserDto user = (UserDto) session.getAttribute("user");
+        if (user == null) return "login";
+        model.addAttribute("state", stateService.getUserState(user.getUserNum(), TimeUtil.getDate()).getData());
+        return "forward:/user/userHome";
     }
 }

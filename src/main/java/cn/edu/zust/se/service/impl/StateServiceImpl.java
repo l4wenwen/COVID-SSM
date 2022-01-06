@@ -5,6 +5,7 @@ import cn.edu.zust.se.dto.Result;
 import cn.edu.zust.se.dto.StateDto;
 import cn.edu.zust.se.entity.State;
 import cn.edu.zust.se.service.StateServiceI;
+import cn.edu.zust.se.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,7 @@ public class StateServiceImpl implements StateServiceI {
     public Result<Integer> delState(String stateNum, String userNum) {
         Result<Integer> result = new Result<Integer>();
         result.setSuccess(true);
-        result.setData(stateMapper.delState(stateNum, userNum));
+        result.setData(stateMapper.delState(TimeUtil.getDate(), userNum));
         return result;
     }
 

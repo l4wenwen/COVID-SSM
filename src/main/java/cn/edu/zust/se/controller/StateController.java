@@ -5,7 +5,6 @@ import cn.edu.zust.se.dto.UserDto;
 import cn.edu.zust.se.entity.State;
 import cn.edu.zust.se.entity.User;
 import cn.edu.zust.se.service.StateServiceI;
-import cn.edu.zust.se.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,10 +45,8 @@ public class StateController {
 
     @RequestMapping(value = "/request", method = RequestMethod.POST)
     public String stateRequest(State state) {
-        if (session.getAttribute("user") == null) return "login";
         UserDto user = (UserDto) session.getAttribute("user");
         state.setUserNum(user.getUserNum());
-        state.setStateTime(TimeUtil.getDate());
         stateService.addState(state);
         return "stateSuccess";
     }

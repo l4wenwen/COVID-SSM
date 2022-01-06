@@ -11,9 +11,9 @@ public interface VacationMapper {
 
     List<Vacation> getVacationListByDepId(@Param("collegeNum") int collegeNum);
 
-//    boolean submitVacationRequest(User user, Vacation vacation);
-//
-//    boolean revokeRequest(String userNum, String vacationNum);
-//
-//    boolean performDecision(int vacationNum, int operation);
+    boolean submitVacationRequest(User user, Vacation vacation);
+
+    boolean revokeRequest(@Param("userNum") String userNum, @Param("vacationNum") String vacationNum);
+
+    boolean performDecision(@Param("vacationNum") int vacationNum, @Param("operation") int operation);
 }

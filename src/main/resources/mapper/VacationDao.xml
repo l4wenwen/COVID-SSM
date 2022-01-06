@@ -21,19 +21,39 @@
     </resultMap>
 
     <!-- 目的：为dao接口方法提供sql语句配置 -->
-    <select id="getVacationListById" resultType="Vacation">
+    <select id="getVacationListById" resultType="VacationMap">
         SELECT u.userName, v.reason, v.startTime, v.endTime, v.way, v.state, v.requestTime
         FROM vacation v,
              user u
         WHERE v.userNum = u.userNum
-          and u.userNum = #{userNum};
+          AND u.userNum = #{userNum};
     </select>
 
-    <select id="getVacationListByDepId" resultType="Vacation">
+    <select id="getVacationListByDepId" resultType="VacationMap">
         SELECT u.userName, v.reason, v.startTime, v.endTime, v.way, v.state, v.requestTime
         FROM vacation v,
              (SELECT userNum, userName FROM user WHERE collegeNum = #{collegeNum}) u
         WHERE v.userNum = u.userNum;
     </select>
+
+    <insert id="submitVacationRequest" parameterType="VacationMap">
+        INSERT INTO vacation(reason, startTime, endTime, state, userNum, requestTime, way)
+        VALUES (#{reason}, #{startTime}, #{endTime}, #{state}, #{userNum}, #{requestTime}, #{way})
+    </insert>
+
+    <delete id="revokeRequest" parameterType="int">
+        DELETE
+        FROM vacation
+        WHERE userNum = #{userNum}
+          AND vacationNum = #{vacationNum}
+          AND state = Vacation.STATE_PENDING
+    </delete>
+
+    <update id="performDecision" parameterType="int">
+        UPDATE vacation
+        SET state = #{operation}
+        WHERE vacationNum = #{vacationNum}
+          AND state = Vacation.STATE_PENDING
+    </update>
 
 </mapper>

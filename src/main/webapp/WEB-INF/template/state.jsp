@@ -12,7 +12,7 @@
         <jsp:param name="bgcolor_dark" value="bgcolor-darkblue"/>
         <jsp:param name="title" value="总检测人数"/>
         <jsp:param name="number" value="${requestScope.statistic.totalNum}"/>
-        <jsp:param name="url" value="/user/userinfo"/>
+        <jsp:param name="url" value="/user/studentList"/>
     </jsp:include>
 
     <jsp:include page="wrapper.jsp" >

@@ -11,39 +11,44 @@ import java.util.List;
 
 @Service
 public class VacationServiceImpl implements VacationServiceI {
-    @Autowired
+
     VacationMapper vacationMapper;
 
-    @Override
-    public List<Vacation> getVacationListById(String userNum) {
-        return vacationMapper.getVacationListById(userNum);
+    @Autowired
+    public void setVacationMapper(VacationMapper vacationMapper) {
+        this.vacationMapper = vacationMapper;
     }
 
-    @Override
-    public List<Vacation> getVacationListByDepId(int collegeNum) {
-        return vacationMapper.getVacationListByDepId(collegeNum);
-    }
-
-    @Override
-    public boolean submitVacationRequest(User user, Vacation vacation) {
-        return vacationMapper.submitVacationRequest(user, vacation);
-    }
-
-    @Override
-    public boolean revokeRequest(String userNum, String vacationNum) {
-        int state = vacationMapper.queryVacationState(userNum, vacationNum);
-        if (state == -1) return false;
-        boolean isRevoked = false;
-        if (state == Vacation.STATE_PENDING) {
-            isRevoked = vacationMapper.deleteVacation(userNum, vacationNum);
-        }
-        return isRevoked;
-    }
-
-    @Override
-    public boolean performDecision(int vacationNum, int operation) {
-        boolean ok = vacationMapper.checkVacationPending(vacationNum);
-        if (!ok) return false;
-        return vacationMapper.updateVacationState(vacationNum, operation);
-    }
+//    @Override
+//    public List<Vacation> getVacationListById(String userNum) {
+//        return vacationMapper.getVacationListById(userNum);
+//    }
+//
+//    @Override
+//    public List<Vacation> getVacationListByDepId(int collegeNum) {
+//        return vacationMapper.getVacationListByDepId(collegeNum);
+//    }
+//
+//    @Override
+//    public boolean submitVacationRequest(User user, Vacation vacation) {
+//        return vacationMapper.submitVacationRequest(user, vacation);
+//    }
+//
+//    @Override
+//    public boolean revokeRequest(String userNum, String vacationNum) {
+//        int state = vacationMapper.queryVacationState(userNum, vacationNum);
+//        if (state == -1) return false;
+//        boolean isRevoked = false;
+//        if (state == Vacation.STATE_PENDING) {
+//            isRevoked = vacationMapper.deleteVacation(userNum, vacationNum);
+//        }
+//        return isRevoked;
+//    }
+//
+//    @Override
+//    public boolean performDecision(int vacationNum, int operation) {
+//        boolean ok = vacationMapper.checkVacationPending(vacationNum);
+//        if (!ok) return false;
+//        return vacationMapper.updateVacationState(vacationNum, operation);
+//    }
 }

@@ -21,4 +21,5 @@
     <select id="getMajorsByCollegeNum" resultMap="majorMap">
         select * from major where collegeNum = #{collegeNum}
     </select>
+
 </mapper>

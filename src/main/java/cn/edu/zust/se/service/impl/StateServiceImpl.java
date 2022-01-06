@@ -7,6 +7,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StateServiceImpl implements StateServiceI {
-    @Autowired
+
     StateMapper stateMapper;
+
+    @Autowired
+    public void setStateMapper(StateMapper stateMapper) {
+        this.stateMapper = stateMapper;
+    }
 }

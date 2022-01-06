@@ -94,7 +94,7 @@ public class UserController {
         return "redirect:/user/userInfo";
     }
 
-    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
+    @RequestMapping(value = "/userInfo", method = {RequestMethod.GET, RequestMethod.POST})
     public String userInfo(Model model) {
         if (session.getAttribute("user") == null) return "login";
         Integer studentNum = userService.getStudentNumber().getData();

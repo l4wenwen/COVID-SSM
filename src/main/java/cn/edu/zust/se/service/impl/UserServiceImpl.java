@@ -18,8 +18,13 @@ import java.util.regex.Pattern;
 @Service
 public class UserServiceImpl implements UserServiceI {
 
-    @Autowired
+
     UserMapper userMapper;
+
+    @Autowired
+    public void setUserMapper(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
 
     public Result<UserDto> userLogin(String userNum, String password){
         Result<UserDto> result = new Result<UserDto>();

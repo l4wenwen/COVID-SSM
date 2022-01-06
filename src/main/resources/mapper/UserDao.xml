@@ -3,8 +3,33 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.zust.se.dao.UserMapper">
+    
+    
+    <resultMap id="userMap" type="cn.edu.zust.se.entity.User">
+        <result property="userNum" column="userNum"/>
+        <result property="collegeNum" column="collegeNum"/>
+        <result property="majorNum" column="majorNum"/>
+        <result property="classNum" column="classNum"/>
+        <result property="userType" column="userType"/>
+        <result property="userName" column="userName"/>
+        <result property="password" column="password"/>
+        <result property="sex" column="sex"/>
+        <result property="telephone" column="telephone"/>
+        <result property="state" column="state"/>
+
+        <association property="major" column="majorNum" javaType="cn.edu.zust.se.entity.Major" select="getMajor"/>
+        <association property="college" column="collegeNum" javaType="cn.edu.zust.se.entity.College" select="getCollege"/>
+    </resultMap>
+
+    <select id="getCollege" resultType="cn.edu.zust.se.entity.College">
+        select * from college where collegeNum = #{collegeNum}
+    </select>
+    <select id="getMajor" resultType="cn.edu.zust.se.entity.Major">
+        select * from major where majorNum = #{majorNum}
+    </select>
+    
     <!-- 目的：为dao接口方法提供sql语句配置 -->
-    <select id="userLogin" resultType="User">
+    <select id="userLogin" resultMap="userMap">
         SELECT
             *
         FROM
@@ -14,13 +39,29 @@
             password = #{password}
     </select>
 
-    <select id="getUserById" resultType="User">
+    <select id="getUserById" resultMap="userMap">
         SELECT
             *
         FROM
             user
         WHERE
             userNum = #{userNum}
+    </select>
+
+    <select id="getStudentNumber" resultType="Integer">
+        SELECT COUNT(*) num FROM user WHERE userType = 2
+    </select>
+
+    <select id="getTeacherNumber" resultType="Integer">
+        SELECT COUNT(*) num FROM user WHERE userType = 1
+    </select>
+
+    <select id="getAllTeachers" resultMap="userMap">
+        SELECT * FROM user WHERE userType = 1
+    </select>
+
+    <select id="getAllStudents" resultMap="userMap">
+        SELECT * FROM user WHERE userType = 2
     </select>
 
     <update id="updateUserTelephone">
@@ -35,5 +76,10 @@
             password = #{password}
         WHERE
             userNum = #{userNum}
+    </update>
+
+    <update id="addUser">
+        INSERT INTO user(userNum, collegeNum, majorNum, userType, userName, password, sex)
+        VALUES(#{userNum}, #{collegeNum}, #{majorNum}, #{userType}, #{userName}, #{password}, #{sex})
     </update>
 </mapper>

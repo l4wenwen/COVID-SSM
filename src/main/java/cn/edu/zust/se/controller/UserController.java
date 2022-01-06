@@ -91,6 +91,44 @@ public class UserController {
     @RequestMapping(value = "/manager", method = RequestMethod.GET)
     public String userManage() {
         if (session.getAttribute("user") == null) return "login";
+        return "redirect:/user/userInfo";
+    }
+
+    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
+    public String userInfo(Model model) {
+        if (session.getAttribute("user") == null) return "login";
+        Integer studentNum = userService.getStudentNumber().getData();
+        Integer teacherNum = userService.getTeacherNumber().getData();
+        model.addAttribute("studentNum", studentNum);
+        model.addAttribute("teacherNum", teacherNum);
         return "userManager";
+    }
+
+    @RequestMapping(value = "/teacherList", method = RequestMethod.POST, produces = {
+            "application/json; charset=utf-8" })
+    @ResponseBody
+    public Result<List<UserDto>> teacherList() {
+        UserDto user = (UserDto) session.getAttribute("user");
+        if (user == null || !user.getUserType().equals(0)) return null;
+        return userService.getAllTeachers();
+    }
+
+    @RequestMapping(value = "/studentList", method = RequestMethod.POST, produces = {
+            "application/json; charset=utf-8" })
+    @ResponseBody
+    public Result<List<UserDto>> studentList(Model model) {
+        UserDto user = (UserDto) session.getAttribute("user");
+        if (user == null || !user.getUserType().equals(0)) return null;
+        return userService.getAllStudents();
+    }
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST, produces = {
+            "application/json; charset=utf-8" })
+    @ResponseBody
+    public String userAdd(User u) {
+        UserDto user = (UserDto) session.getAttribute("user");
+        if (user == null || !user.getUserType().equals(0)) return null;
+        Result<String> result = userService.addUser(u);
+        return result.getData();
     }
 }

@@ -61,7 +61,11 @@ public class UserServiceImpl implements UserServiceI {
             UserProfile userProfile = new UserProfile();
             userProfile.setUserName(user.getUserName());
             userProfile.setUserNum(user.getUserNum());
-            userProfile.setSex(user.isSex() ? "男" : "女");
+            userProfile.setSex(user.getSex() ? "男" : "女");
+            if (user.getCollege() != null)
+                userProfile.setCollegeName(user.getCollege().getCollegeName());
+            if (user.getMajor() != null)
+                userProfile.setMajorName(user.getMajor().getMajorName());
             String userType = "管理员";
             if (user.getUserType() == 1) userType = "老师";
             else if (user.getUserType() == 2) userType = "学生";
@@ -112,6 +116,89 @@ public class UserServiceImpl implements UserServiceI {
                 result.setError("修改失败！");
             }
         }
+        return result;
+    }
+
+    @Override
+    public Result<Integer> getStudentNumber() {
+        Result<Integer> result = new Result<Integer>();
+        Integer number = userMapper.getStudentNumber();
+        result.setSuccess(true);
+        result.setData(number);
+        return result;
+    }
+
+    @Override
+    public Result<Integer> getTeacherNumber() {
+        Result<Integer> result = new Result<Integer>();
+        Integer number = userMapper.getTeacherNumber();
+        result.setSuccess(true);
+        result.setData(number);
+        return result;
+    }
+
+    @Override
+    public Result<List<UserDto>> getAllTeachers() {
+        Result<List<UserDto>> result = new Result<List<UserDto>>();
+        List<UserDto> list = e2d(userMapper.getAllTeachers());
+        result.setData(list);
+        result.setSuccess(true);
+        return result;
+    }
+
+    @Override
+    public Result<List<UserDto>> getAllStudents() {
+        Result<List<UserDto>> result = new Result<List<UserDto>>();
+        List<UserDto> list = e2d(userMapper.getAllStudents());
+        result.setData(list);
+        result.setSuccess(true);
+        return result;
+    }
+
+    @Override
+    public Result<String> addUser(User user) {
+        Result<String> result = new Result<String>();
+        String userNum = user.getUserNum();
+        Integer collegeNum = user.getCollegeNum();
+        Integer majorNum = user.getMajorNum();
+        Integer userType = user.getUserType();
+        Boolean sex = user.getSex();
+        String userName = user.getUserName();
+        String message = "", directURI = "/WEB-INF/";
+        boolean isRegistered = false;
+        do {
+            System.out.println(user.toString());
+            if (!isGoodString(userName) || !isGoodString(userNum) || !isGoodString(sex.toString()) || !isGoodString(userType.toString())) {
+                message = "信息不能为空。";
+                break;
+            }
+            if (userNum.length() != 8) {
+                message = "学号长度为8位";
+                break;
+            }
+            if (userType == 0) {
+                collegeNum = majorNum = null;
+            } else if (userType == 1) {
+                if (!isGoodString(collegeNum.toString())) {
+                    message = "学院未选择";
+                    break;
+                }
+                majorNum = null;
+            } else {
+                if (!isGoodString(collegeNum.toString()) || !isGoodString(majorNum.toString())) {
+                    message = "学院或专业未选择";
+                    break;
+                }
+            }
+            isRegistered = userMapper.addUser(userNum, userName, sex, userType, collegeNum, userNum.substring(4), majorNum);
+            if (!isRegistered) {
+                message = "账号已存在。";
+                break;
+            }
+            message = "添加成功";
+        } while (false);
+        result.setSuccess(isRegistered);
+        result.setData(message);
         return result;
     }
 

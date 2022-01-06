@@ -7,14 +7,14 @@ $(document).ready(function() {
                 type: "POST",
                 success: function (res) {
                     $(".chart .item").remove();
-                    for (let index in res) {
+                    for (let index in res.data) {
                         let appendstr = "<tr class='item'>"
-                        appendstr += "<td>" + res[index]["userName"] + "</td>";
-                        appendstr += "<td>" + res[index]["userNum"] + "</td>";
-                        appendstr += "<td>" + res[index]["collegeName"] + "</td>";
-                        appendstr += "<td>" + res[index]["sex"] + "</td>";
-                        appendstr += "<td>" + res[index]["state"] + "</td>";
-                        appendstr += "<td>" + res[index]["telephone"] + "</td>";
+                        appendstr += "<td>" + res.data[index]["userName"] + "</td>";
+                        appendstr += "<td>" + res.data[index]["userNum"] + "</td>";
+                        appendstr += "<td>" + res.data[index]["college"]["collegeName"] + "</td>";
+                        appendstr += "<td>" + (res.data[index]["sex"] ? "男" : "女") + "</td>";
+                        appendstr += "<td>" + res.data[index]["state"] + "</td>";
+                        appendstr += "<td>" + res.data[index]["telephone"] + "</td>";
                         appendstr += "</tr>";
                         $(".chart").append(appendstr);
                     }
@@ -56,15 +56,14 @@ $(document).ready(function() {
     $(".menu-button").click(
         function () {
             if ($(".side-nav .items").css("display") == "block") {
-                $(".side-nav").css("width","0");
-                $(".side-nav .items").css("display","none");
-                $(".container").css("padding-left","0");
+                $(".side-nav").css("width", "0");
+                $(".side-nav .items").css("display", "none");
+                $(".container").css("padding-left", "0");
             } else {
-                $(".side-nav").css("width","13rem");
-                $(".side-nav .items").css("display","block");
-                $(".container").css("padding-left","13rem");
+                $(".side-nav").css("width", "13rem");
+                $(".side-nav .items").css("display", "block");
+                $(".container").css("padding-left", "13rem");
             }
         }
     );
-
 });

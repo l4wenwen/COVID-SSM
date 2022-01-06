@@ -1,4 +1,4 @@
-<%--
+ <%--
   Created by IntelliJ IDEA.
   User: Fish_Brother
   Date: 2021-07-02
@@ -12,7 +12,7 @@
         <jsp:param name="bgcolor_dark" value="bgcolor-darkblue"/>
         <jsp:param name="title" value="学生总人数"/>
         <jsp:param name="number" value="${requestScope.studentNum}"/>
-        <jsp:param name="url" value="/user/userinfo"/>
+        <jsp:param name="url" value="/user/studentList"/>
     </jsp:include>
 
     <jsp:include page="wrapper.jsp" >
@@ -20,6 +20,6 @@
         <jsp:param name="bgcolor_dark" value="bgcolor-darkgreen"/>
         <jsp:param name="title" value="教师总人数"/>
         <jsp:param name="number" value="${requestScope.teacherNum}"/>
-        <jsp:param name="url" value="/user/teacherlist"/>
+        <jsp:param name="url" value="/user/teacherList"/>
     </jsp:include>
 </div>

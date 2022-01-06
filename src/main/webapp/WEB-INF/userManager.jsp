@@ -134,12 +134,12 @@
             $.ajax({
                 url: "/user/add",
                 data: {
-                    num: $("[name='num']").val(),
-                    name: $("[name='name']").val(),
+                    userNum: $("[name='num']").val(),
+                    userName: $("[name='name']").val(),
                     sex: $("[name='sex']").val(),
-                    type: $("[name='type']").val(),
-                    college: $("[name='college']").val(),
-                    major: $("[name='major']").val(),
+                    userType: $("[name='type']").val(),
+                    collegeNum: $("[name='college']").val(),
+                    majorNum: $("[name='major']").val(),
                 },
                 type: "POST",
                 dataType: "text",

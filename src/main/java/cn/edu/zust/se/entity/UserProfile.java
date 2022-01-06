@@ -13,16 +13,4 @@ public class UserProfile {
     private String majorName;
     private String userType;
     private String telephone;
-
-    public UserProfile(String userNum, String userName, String sex, String collegeName, String majorName, String userType) {
-        this.userNum = userNum;
-        this.userName = userName;
-        this.sex = sex;
-        this.collegeName = collegeName;
-        this.majorName = majorName;
-        this.userType = userType;
-    }
-
-    public UserProfile() {
-    }
 }

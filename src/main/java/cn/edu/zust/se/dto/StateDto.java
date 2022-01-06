@@ -9,16 +9,16 @@ public class StateDto {
     private Integer stateNum;
     private String userNum;
     private String stateTime;
-    private boolean isTemperature;
-    private boolean isCovid;
-    private boolean isLikeCovid;
+    private Integer isTemperature;
+    private Integer isCovid;
+    private Integer isLikeCovid;
     private Integer quarantine;
-    private boolean isRecentArea;
-    private boolean isRecentCountry;
-    private boolean isRecentPeople;
-    private boolean isSymptom;
-    private boolean isAbnormal;
+    private Integer isRecentArea;
+    private Integer isRecentCountry;
+    private Integer isRecentPeople;
+    private Integer isSymptom;
+    private Integer isAbnormal;
     private Integer healthCodeType;
-    private boolean isOutSchool;
-    private boolean isOutCity;
+    private Integer isOutSchool;
+    private Integer isOutCity;
 }

@@ -54,11 +54,11 @@
                     <label class="control-label" for="">体温是否异常？</label>
                     <div class="controls">
                         <label class="radio inline" for="isTemperature-0">
-                            <input type="radio" name="isTemperature" id="isTemperature-0" value="false" checked required>
+                            <input type="radio" name="isTemperature" id="isTemperature-0" value="0" checked required>
                             否
                         </label>
                         <label class="radio inline" for="isTemperature-1">
-                            <input type="radio" name="isTemperature" id="isTemperature-1" value="true" required>
+                            <input type="radio" name="isTemperature" id="isTemperature-1" value="1" required>
                             是
                         </label>
                     </div>
@@ -68,11 +68,11 @@
                     <label class="control-label" for="">是否确诊为新冠？</label>
                     <div class="controls">
                         <label class="radio inline" for="isCovid-0">
-                            <input type="radio" name="isCovid" id="isCovid-0" value="false" checked required>
+                            <input type="radio" name="isCovid" id="isCovid-0" value="0" checked required>
                             否
                         </label>
                         <label class="radio inline" for="isCovid-1">
-                            <input type="radio" name="isCovid" id="isCovid-1" value="true" required>
+                            <input type="radio" name="isCovid" id="isCovid-1" value="1" required>
                             是
                         </label>
                     </div>
@@ -82,11 +82,11 @@
                     <label class="control-label" for="">是否疑似为新冠？</label>
                     <div class="controls">
                         <label class="radio inline" for="isLikeCovid-0">
-                            <input type="radio" name="isLikeCovid" id="isLikeCovid-0" value="false" checked required>
+                            <input type="radio" name="isLikeCovid" id="isLikeCovid-0" value="0" checked required>
                             否
                         </label>
                         <label class="radio inline" for="isLikeCovid-1">
-                            <input type="radio" name="isLikeCovid" id="isLikeCovid-1" value="true" required>
+                            <input type="radio" name="isLikeCovid" id="isLikeCovid-1" value="1" required>
                             是
                         </label>
                     </div>
@@ -118,11 +118,11 @@
                     <label class="control-label" for="">本人同住亲友近14天内是否途径或停留疫情中高风险地区？</label>
                     <div class="controls">
                         <label class="radio inline" for="isRecentArea-0">
-                            <input type="radio" name="isRecentArea" id="isRecentArea-0" value="false" checked required>
+                            <input type="radio" name="isRecentArea" id="isRecentArea-0" value="0" checked required>
                             否
                         </label>
                         <label class="radio inline" for="isRecentArea-1">
-                            <input type="radio" name="isRecentArea" id="isRecentArea-1" value="true" required>
+                            <input type="radio" name="isRecentArea" id="isRecentArea-1" value="1" required>
                             是
                         </label>
                     </div>
@@ -132,11 +132,11 @@
                     <label class="control-label" for="">近14天是否曾在国(境)外旅行、居住？</label>
                     <div class="controls">
                         <label class="radio inline" for="isRecentCountry-0">
-                            <input type="radio" name="isRecentCountry" id="isRecentCountry-0" value="false" checked required>
+                            <input type="radio" name="isRecentCountry" id="isRecentCountry-0" value="0" checked required>
                             否
                         </label>
                         <label class="radio inline" for="isRecentCountry-1">
-                            <input type="radio" name="isRecentCountry" id="isRecentCountry-1" value="true" required>
+                            <input type="radio" name="isRecentCountry" id="isRecentCountry-1" value="1" required>
                             是
                         </label>
                     </div>
@@ -146,11 +146,11 @@
                     <label class="control-label" for="">近14天是否曾接触过确诊或疑似新冠病例？</label>
                     <div class="controls">
                         <label class="radio inline" for="isRecentPeople-0">
-                            <input type="radio" name="isRecentPeople" id="isRecentPeople-0" value="false" checked required>
+                            <input type="radio" name="isRecentPeople" id="isRecentPeople-0" value="0" checked required>
                             否
                         </label>
                         <label class="radio inline" for="isRecentPeople-1">
-                            <input type="radio" name="isRecentPeople" id="isRecentPeople-1" value="true" required>
+                            <input type="radio" name="isRecentPeople" id="isRecentPeople-1" value="1" required>
                             是
                         </label>
                     </div>
@@ -160,11 +160,11 @@
                     <label class="control-label" for="">今日是否有以下相关症状(乏力、干咳 、鼻塞、流涕、咽痛、腹泻)？</label>
                     <div class="controls">
                         <label class="radio inline" for="isSymptom-0">
-                            <input type="radio" name="isSymptom" id="isSymptom-0" value="false" checked required>
+                            <input type="radio" name="isSymptom" id="isSymptom-0" value="0" checked required>
                             否
                         </label>
                         <label class="radio inline" for="isSymptom-1">
-                            <input type="radio" name="isSymptom" id="isSymptom-1" value="true" required>
+                            <input type="radio" name="isSymptom" id="isSymptom-1" value="1" required>
                             是
                         </label>
                     </div>
@@ -174,11 +174,11 @@
                     <label class="control-label" for="">今日是否存在其他个人健康异常情况？</label>
                     <div class="controls">
                         <label class="radio inline" for="isAbnormal-0">
-                            <input type="radio" name="isAbnormal" id="isAbnormal-0" value="false" checked required>
+                            <input type="radio" name="isAbnormal" id="isAbnormal-0" value="0" checked required>
                             否
                         </label>
                         <label class="radio inline" for="isAbnormal-1">
-                            <input type="radio" name="isAbnormal" id="isAbnormal-1" value="true" required>
+                            <input type="radio" name="isAbnormal" id="isAbnormal-1" value="1" required>
                             是
                         </label>
                     </div>
@@ -206,11 +206,11 @@
                     <label class="control-label" for="">今日是否出校？</label>
                     <div class="controls">
                         <label class="radio inline" for="isOutSchool-0">
-                            <input type="radio" name="isOutSchool" id="isOutSchool-0" value="false" checked required>
+                            <input type="radio" name="isOutSchool" id="isOutSchool-0" value="0" checked required>
                             否
                         </label>
                         <label class="radio inline" for="isOutSchool-1">
-                            <input type="radio" name="isOutSchool" id="isOutSchool-1" value="true" required>
+                            <input type="radio" name="isOutSchool" id="isOutSchool-1" value="1" required>
                             是
                         </label>
                     </div>
@@ -220,11 +220,11 @@
                     <label class="control-label" for="">今日是否出城？</label>
                     <div class="controls">
                         <label class="radio inline" for="isOutCity-0">
-                            <input type="radio" name="isOutCity" id="isOutCity-0" value="false" checked required>
+                            <input type="radio" name="isOutCity" id="isOutCity-0" value="0" checked required>
                             否
                         </label>
                         <label class="radio inline" for="isOutCity-1">
-                            <input type="radio" name="isOutCity" id="isOutCity-1" value="true" required>
+                            <input type="radio" name="isOutCity" id="isOutCity-1" value="1" required>
                             是
                         </label>
                     </div>

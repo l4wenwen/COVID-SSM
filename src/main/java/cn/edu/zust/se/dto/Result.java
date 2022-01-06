@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * 封装json对象，所有返回结果都使用它
  */
-public class Result<T> extends Result<List<State>> {
+public class Result<T> {
 
 	private boolean success;// 是否成功标志
 
@@ -42,7 +42,7 @@ public class Result<T> extends Result<List<State>> {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(T data) {
 		this.data = data;
 	}
 

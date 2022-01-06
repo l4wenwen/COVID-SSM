@@ -2,6 +2,8 @@ package cn.edu.zust.se.controller;
 
 import cn.edu.zust.se.dto.Result;
 import cn.edu.zust.se.dto.UserDto;
+import cn.edu.zust.se.entity.State;
+import cn.edu.zust.se.entity.User;
 import cn.edu.zust.se.service.StateServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -42,9 +44,10 @@ public class StateController {
     }
 
     @RequestMapping(value = "/request", method = RequestMethod.POST)
-    public String stateSuccess() {
-        if (session.getAttribute("user") == null) return "login";
-
+    public String stateRequest(State state) {
+        UserDto user = (UserDto) session.getAttribute("user");
+        state.setUserNum(user.getUserNum());
+        stateService.addState(state);
         return "stateSuccess";
     }
 }

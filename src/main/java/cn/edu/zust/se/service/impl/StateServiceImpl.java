@@ -3,6 +3,7 @@ package cn.edu.zust.se.service.impl;
 import cn.edu.zust.se.dao.StateMapper;
 import cn.edu.zust.se.dto.Result;
 import cn.edu.zust.se.dto.StateDto;
+import cn.edu.zust.se.entity.State;
 import cn.edu.zust.se.service.StateServiceI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,11 +51,10 @@ public class StateServiceImpl implements StateServiceI {
     }
 
     @Override
-    public Result<Boolean> addState(Integer stateNum, String userNum, String stateTime, boolean isTemperature, boolean isCovid, boolean isLikeCovid, Integer quarantine, boolean isRecentArea, boolean isRecentCountry, boolean isRecentPeople, boolean isSymptom, boolean isAbnormal, Integer healthCodeType, boolean isOutSchool, boolean isOutCity) {
+    public Result<Boolean> addState(State state) {
         Result<Boolean> result = new Result<Boolean>();
         result.setSuccess(true);
-        result.setData("添加成功");
-        stateMapper.addState(stateNum, userNum, stateTime, isTemperature, isCovid, isLikeCovid, quarantine, isRecentArea, isRecentCountry, isRecentPeople, isSymptom, isAbnormal, healthCodeType, isOutSchool, isOutCity);
+        stateMapper.addState(state);
         return result;
     }
 }

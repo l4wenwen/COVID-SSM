@@ -161,6 +161,12 @@ public class UserServiceImpl implements UserServiceI {
     }
 
     @Override
+    public Result<List<UserDto>> getAllStudentsByCollegeNum(String collegeNum) {
+        List<UserDto> list = e2d(userMapper.getAllStudentsByCollegeNum(collegeNum));
+        return new Result<List<UserDto>>(true, list);
+    }
+
+    @Override
     public Result<String> addUser(User user) {
         Result<String> result = new Result<String>();
         String userNum = user.getUserNum();

@@ -52,6 +52,10 @@
         SELECT COUNT(*) num FROM user WHERE userType = 2
     </select>
 
+    <select id="getStudentNumberByCollegeNum" resultType="Integer">
+        SELECT COUNT(*) num FROM user WHERE userType = 2 AND collegeNum = #{collegeNum}
+    </select>
+
     <select id="getTeacherNumber" resultType="Integer">
         SELECT COUNT(*) num FROM user WHERE userType = 1
     </select>
@@ -62,6 +66,10 @@
 
     <select id="getAllStudents" resultMap="userMap">
         SELECT * FROM user WHERE userType = 2
+    </select>
+
+    <select id="getAllStudentsByCollegeNum" resultMap="userMap">
+        SELECT * FROM user WHERE userType = 2 AND collegeNum = #{collegeNum}
     </select>
 
     <update id="updateUserTelephone">

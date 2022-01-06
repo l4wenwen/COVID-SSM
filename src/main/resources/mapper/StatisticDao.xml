@@ -14,12 +14,63 @@
         <result property="majorName" column="majorName"/>
     </resultMap>
 
+    <resultMap id="userMap" type="cn.edu.zust.se.entity.User">
+        <result property="userNum" column="userNum"/>
+        <result property="collegeNum" column="collegeNum"/>
+        <result property="majorNum" column="majorNum"/>
+        <result property="classNum" column="classNum"/>
+        <result property="userType" column="userType"/>
+        <result property="userName" column="userName"/>
+        <result property="password" column="password"/>
+        <result property="sex" column="sex"/>
+        <result property="telephone" column="telephone"/>
+        <result property="state" column="state"/>
+
+        <association property="major" column="majorNum" javaType="cn.edu.zust.se.entity.Major" select="getMajor"/>
+        <association property="college" column="collegeNum" javaType="cn.edu.zust.se.entity.College" select="getCollege"/>
+    </resultMap>
+
+    <select id="getCollege" resultType="cn.edu.zust.se.entity.College">
+        select * from college where collegeNum = #{collegeNum}
+    </select>
+    <select id="getMajor" resultType="cn.edu.zust.se.entity.Major">
+        select * from major where majorNum = #{majorNum}
+    </select>
+
     <select id="getAllColleges" resultMap="collegeMap">
         select * from college
     </select>
 
     <select id="getMajorsByCollegeNum" resultMap="majorMap">
         select * from major where collegeNum = #{collegeNum}
+    </select>
+
+    <select id="getAllFilledStudents" resultMap="userMap">
+        select * from user where userNum in (select userNum from state where stateTime = #{queryTime})
+    </select>
+
+    <select id="getAllFilledStudentsByCollegeNum" resultMap="userMap">
+        select * from user where userNum in (select userNum from state where stateTime = #{queryTime}) and collegeNum = #{collegeNum}
+    </select>
+
+    <select id="getAllHighRiskStudents" resultMap="userMap">
+        select * from user where userNum in (select userNum from state where stateTime = #{queryTime} and isCovid = 1)
+    </select>
+
+    <select id="getAllHighRiskStudentsByCollegeNum" resultMap="userMap">
+        select * from user where userNum in (select userNum from state where stateTime = #{queryTime} and isCovid = 1) and collegeNum = #{collegeNum}
+    </select>
+
+    <select id="getAllRiskAreaStudents" resultMap="userMap">
+        select * from user where userNum in (select userNum from state where stateTime = #{queryTime} and isRecentArea = 1)
+    </select>
+
+    <select id="getAllRiskAreaStudentsByCollegeNum" resultMap="userMap">
+        select * from user where userNum in (select userNum from state where stateTime = #{queryTime} and isRecentArea = 1) and collegeNum = #{collegeNum}
+    </select>
+
+    <select id="getAllStatistic" resultType="cn.edu.zust.se.entity.Statistic">
+        select allStudent, filledStudent, highRiskStudent,
     </select>
 
 </mapper>

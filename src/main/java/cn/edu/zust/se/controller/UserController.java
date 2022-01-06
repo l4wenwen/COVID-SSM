@@ -118,8 +118,11 @@ public class UserController {
     @ResponseBody
     public Result<List<UserDto>> studentList(Model model) {
         UserDto user = (UserDto) session.getAttribute("user");
-        if (user == null || !user.getUserType().equals(0)) return null;
-        return userService.getAllStudents();
+        if (user == null || user.getUserType().equals(2)) return null;
+        if (user.getUserType() == 0)
+            return userService.getAllStudents();
+        else
+            return userService.getAllStudentsByCollegeNum(user.getCollegeNum().toString());
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = {

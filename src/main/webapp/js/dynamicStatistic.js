@@ -14,7 +14,7 @@ $(document).ready(function() {
                         appendstr += "<td>" + res.data[index]["college"]["collegeName"] + "</td>";
                         appendstr += "<td>" + (res.data[index]["sex"] ? "男" : "女") + "</td>";
                         appendstr += "<td>" + res.data[index]["state"] + "</td>";
-                        appendstr += "<td>" + res.data[index]["telephone"] + "</td>";
+                        appendstr += "<td>" + (res.data[index]["telephone"] == null ? "未填写" : res.data[index]["telephone"]) + "</td>";
                         appendstr += "</tr>";
                         $(".chart").append(appendstr);
                     }

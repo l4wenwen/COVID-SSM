@@ -14,6 +14,8 @@ public interface UserMapper {
 
     List<User> getAllStudents();
 
+    List<User> getAllStudentsByCollegeNum(@Param("collegeNum") String collegeNum);
+
     Boolean updateUserTelephone(@Param("telephone") String telephone, @Param("userNum") String userNum);
 
     Boolean updateUserPassword(@Param("password") String password, @Param("userNum") String userNum);
@@ -21,6 +23,8 @@ public interface UserMapper {
     Integer getStudentNumber();
 
     Integer getTeacherNumber();
+
+    Integer getStudentNumberByCollegeNum(@Param("collegeNum") String collegeNum);
 
     Boolean addUser(@Param("userNum") String userNum,
                     @Param("userName") String userName,

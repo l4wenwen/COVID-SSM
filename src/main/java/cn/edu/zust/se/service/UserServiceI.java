@@ -26,5 +26,7 @@ public interface UserServiceI {
 
     public Result<List<UserDto>> getAllStudents();
 
+    public Result<List<UserDto>> getAllStudentsByCollegeNum(String collegeNum);
+
     public Result<String> addUser(User user);
 }

@@ -15,9 +15,9 @@
 </head>
 <body>
 <%request.setCharacterEncoding("UTF-8");%>
-<%--<c:if test="${sessionScope.user.userType != 2 && requestScope.statistic == null}">--%>
-<%--    <c:redirect url="/statistic/all" />--%>
-<%--</c:if>--%>
+<c:if test="${sessionScope.user.userType != 2 && requestScope.statistic == null}">
+    <c:redirect url="/statistic/all" />
+</c:if>
 <%--<c:if test="${sessionScope.user.userType == 2 && requestScope.state == null}">--%>
 <%--    <c:redirect url="/state/getstate" />--%>
 <%--</c:if>--%>

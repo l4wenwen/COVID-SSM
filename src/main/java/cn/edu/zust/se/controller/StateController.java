@@ -1,5 +1,6 @@
 package cn.edu.zust.se.controller;
 
+import ch.qos.logback.core.util.TimeUtil;
 import cn.edu.zust.se.dto.Result;
 import cn.edu.zust.se.dto.UserDto;
 import cn.edu.zust.se.entity.State;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 
 @Controller
 @RequestMapping("/state")
@@ -47,7 +49,10 @@ public class StateController {
     public String stateRequest(State state) {
         UserDto user = (UserDto) session.getAttribute("user");
         state.setUserNum(user.getUserNum());
-        stateService.delState(user.getUserNum());
+        String strDateFormat = "yyyy-MM-dd";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(strDateFormat);
+        String stateTime = simpleDateFormat.format(date);
+        stateService.delState(stateTime, user.getUserNum());
         stateService.addState(state);
         return "stateSuccess";
     }

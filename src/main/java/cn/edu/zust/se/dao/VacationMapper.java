@@ -13,7 +13,11 @@ public interface VacationMapper {
 
     boolean submitVacationRequest(User user, Vacation vacation);
 
-    boolean revokeRequest(@Param("userNum") String userNum, @Param("vacationNum") String vacationNum);
+    int queryVacationState(@Param("userNum") String userNum, @Param("vacationNum") String vacationNum);
 
-    boolean performDecision(@Param("vacationNum") int vacationNum, @Param("operation") int operation);
+    boolean deleteVacation(@Param("userNum") String userNum, @Param("vacationNum") String vacationNum);
+
+    boolean checkVacationPending(@Param("vacationNum") int vacationNum);
+
+    boolean updateVacationState(@Param("vacationNum") int vacationNum, @Param("state") int state);
 }

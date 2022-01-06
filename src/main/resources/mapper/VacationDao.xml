@@ -41,19 +41,31 @@
         VALUES (#{reason}, #{startTime}, #{endTime}, #{state}, #{userNum}, #{requestTime}, #{way})
     </insert>
 
-    <delete id="revokeRequest" parameterType="int">
+    <select id="queryVacationState" resultType="int">
+        SELECT IFNULL(state, -1)
+        FROM vacation
+        WHERE userNum = #{userNum}
+          AND vacationNum = #{vacationNum}
+    </select>
+
+    <delete id="deleteVacation" parameterType="int">
         DELETE
         FROM vacation
         WHERE userNum = #{userNum}
           AND vacationNum = #{vacationNum}
-          AND state = Vacation.STATE_PENDING
     </delete>
 
-    <update id="performDecision" parameterType="int">
-        UPDATE vacation
-        SET state = #{operation}
+    <select id="checkVacationPending" resultType="int">
+        SELECT count(*)
+        FROM vacation
         WHERE vacationNum = #{vacationNum}
-          AND state = Vacation.STATE_PENDING
+          AND state = 0
+    </select>
+
+    <update id="updateVacationState" parameterType="int">
+        UPDATE vacation
+        SET state = #{state}
+        WHERE vacationNum = #{vacationNum}
     </update>
 
 </mapper>

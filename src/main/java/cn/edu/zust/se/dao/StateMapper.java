@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface StateMapper {
     List<StateDto> getStateByTime0(@Param("startTime") String startTime, @Param("endTime") String endTime);
-    List<StateDto> getStateByTime1(@Param("startTime") String startTime, @Param("endTime") String endTime);
-    List<StateDto> getStateByTime2(@Param("startTime") String startTime, @Param("endTime") String endTime);
+    List<StateDto> getStateByTime1(@Param("startTime") String startTime, @Param("endTime") String endTime, @Param("collegeNum") Integer collegeNum);
+    List<StateDto> getStateByTime2(@Param("startTime") String startTime, @Param("endTime") String endTime, @Param("userNum") String userNum);
 
     Integer delState(@Param("stateTime") String stateTime, @Param("userNum") String userNum);
 

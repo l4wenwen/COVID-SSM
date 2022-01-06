@@ -22,16 +22,15 @@ public class StateServiceImpl implements StateServiceI {
     }
 
     @Override
-    public Result<List<StateDto>> getStateByTime(String startTime, String endTime, Integer userType) {
+    public Result<List<StateDto>> getStateByTime(String startTime, String endTime, Integer userType, Integer collegeNum, String userNum) {
         Result<List<StateDto>> result = new Result<>();
         if (userType == 0) {
             result.setData(stateMapper.getStateByTime0(startTime, endTime));
         } else if (userType == 1) {
-            result.setData(stateMapper.getStateByTime1(startTime, endTime));
+            result.setData(stateMapper.getStateByTime1(startTime, endTime, collegeNum));
         } else {
-            result.setData(stateMapper.getStateByTime2(startTime, endTime));
+            result.setData(stateMapper.getStateByTime2(startTime, endTime, userNum));
         }
-        result.setSuccess(true);
         return result;
     }
 

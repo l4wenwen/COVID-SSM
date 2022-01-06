@@ -1,9 +1,6 @@
 package cn.edu.zust.se.dao;
 
-import cn.edu.zust.se.entity.State;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 public interface StateMapper {
     Boolean addState(
@@ -24,8 +21,11 @@ public interface StateMapper {
             @Param("isOutCity") boolean isOutCity
     );
 
-    List<State> getAllState();
+    String getStateByTime0(@Param("startTime") String startTime, @Param("endTime") String endTime);
+    String getStateByTime1(@Param("startTime") String startTime, @Param("endTime") String endTime);
+    String getStateByTime2(@Param("startTime") String startTime, @Param("endTime") String endTime);
 
-    List<State> getStateByTime(@Param("stateTimeStart") String stateTimeStart,
-                                @Param("stateTimeEnd") String stateTimeEnd);
+    String delState(@Param("stateNum") String stateNum, @Param("userNum") String userNum);
+
+    String getUserState(@Param("userNum") String userNum, @Param("stateTime") String stateTime);
 }

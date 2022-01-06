@@ -1,11 +1,11 @@
 package cn.edu.zust.se.controller;
 
-import ch.qos.logback.core.util.TimeUtil;
 import cn.edu.zust.se.dto.Result;
 import cn.edu.zust.se.dto.UserDto;
 import cn.edu.zust.se.entity.State;
 import cn.edu.zust.se.entity.User;
 import cn.edu.zust.se.service.StateServiceI;
+import cn.edu.zust.se.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,10 +49,8 @@ public class StateController {
     public String stateRequest(State state) {
         UserDto user = (UserDto) session.getAttribute("user");
         state.setUserNum(user.getUserNum());
-        String strDateFormat = "yyyy-MM-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(strDateFormat);
-        String stateTime = simpleDateFormat.format(date);
-        stateService.delState(stateTime, user.getUserNum());
+        state.setStateTime(TimeUtil.getDate());
+        stateService.delState(TimeUtil.getDate(), user.getUserNum());
         stateService.addState(state);
         return "stateSuccess";
     }

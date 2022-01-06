@@ -9,10 +9,12 @@ import cn.edu.zust.se.entity.Major;
 import cn.edu.zust.se.entity.Statistic;
 import cn.edu.zust.se.entity.User;
 import cn.edu.zust.se.service.StatisticServiceI;
+import cn.edu.zust.se.util.TimeUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -64,7 +66,7 @@ public class StatisticServiceImpl implements StatisticServiceI {
     @Override
     public Result<List<UserDto>> getAllFilledStudents() {
         Result<List<UserDto>> result = new Result<List<UserDto>>();
-        List<UserDto> list = e2d(statisticMapper.getAllFilledStudents(getDate()));
+        List<UserDto> list = e2d(statisticMapper.getAllFilledStudents(TimeUtil.getDate()));
         result.setSuccess(true);
         result.setData(list);
         return result;
@@ -73,7 +75,7 @@ public class StatisticServiceImpl implements StatisticServiceI {
     @Override
     public Result<List<UserDto>> getAllFilledStudentsByCollegeNum(String collegeNum) {
         Result<List<UserDto>> result = new Result<List<UserDto>>();
-        List<UserDto> list = e2d(statisticMapper.getAllFilledStudentsByCollegeNum(collegeNum, getDate()));
+        List<UserDto> list = e2d(statisticMapper.getAllFilledStudentsByCollegeNum(collegeNum, TimeUtil.getDate()));
         result.setSuccess(true);
         result.setData(list);
         return result;
@@ -81,44 +83,44 @@ public class StatisticServiceImpl implements StatisticServiceI {
 
     @Override
     public Result<List<UserDto>> getAllHighRiskStudents() {
-        List<UserDto> list = e2d(statisticMapper.getAllHighRiskStudents(getDate()));
+        List<UserDto> list = e2d(statisticMapper.getAllHighRiskStudents(TimeUtil.getDate()));
         return new Result<List<UserDto>>(true, list);
     }
 
     @Override
     public Result<List<UserDto>> getAllHighRiskStudentsByCollegeNum(String collegeNum) {
-        List<UserDto> list = e2d(statisticMapper.getAllHighRiskStudentsByCollegeNum(collegeNum, getDate()));
+        List<UserDto> list = e2d(statisticMapper.getAllHighRiskStudentsByCollegeNum(collegeNum, TimeUtil.getDate()));
         return new Result<List<UserDto>>(true, list);
     }
 
     @Override
     public Result<List<UserDto>> getAllRiskAreaStudents() {
-        List<UserDto> list = e2d(statisticMapper.getAllRiskAreaStudents(getDate()));
+        List<UserDto> list = e2d(statisticMapper.getAllRiskAreaStudents(TimeUtil.getDate()));
         return new Result<List<UserDto>>(true, list);
     }
 
     @Override
     public Result<List<UserDto>> getAllRiskAreaStudentsByCollegeNum(String collegeNum) {
-        List<UserDto> list = e2d(statisticMapper.getAllRiskAreaStudentsByCollegeNum(collegeNum, getDate()));
+        List<UserDto> list = e2d(statisticMapper.getAllRiskAreaStudentsByCollegeNum(collegeNum, TimeUtil.getDate()));
         return new Result<List<UserDto>>(true, list);
     }
 
     @Override
     public Result<List<UserDto>> getAllStudents() {
-        List<UserDto> list = e2d(statisticMapper.getAllStudents(getDate()));
+        List<UserDto> list = e2d(statisticMapper.getAllStudents(TimeUtil.getDate()));
         return new Result<List<UserDto>>(true, list);
     }
 
     @Override
     public Result<List<UserDto>> getAllStudentsByCollegeNum(String collegeNum) {
-        List<UserDto> list = e2d(statisticMapper.getAllStudentsByCollegeNum(collegeNum, getDate()));
+        List<UserDto> list = e2d(statisticMapper.getAllStudentsByCollegeNum(collegeNum, TimeUtil.getDate()));
         return new Result<List<UserDto>>(true, list);
     }
 
     @Override
     public Result<Statistic> getAllStatistic() {
         Statistic statistic = new Statistic();
-        String curTime = getDate();
+        String curTime = TimeUtil.getDate();
         statistic.setTotalNum(userMapper.getStudentNumber());
         statistic.setFilledNum(statisticMapper.getAllFilledStudents(curTime).size());
         statistic.setHighRiskNum(statisticMapper.getAllHighRiskStudents(curTime).size());
@@ -129,7 +131,7 @@ public class StatisticServiceImpl implements StatisticServiceI {
     @Override
     public Result<Statistic> getAllStatisticByCollegeNum(String collegeNum) {
         Statistic statistic = new Statistic();
-        String curTime = getDate();
+        String curTime = TimeUtil.getDate();
         statistic.setTotalNum(userMapper.getStudentNumberByCollegeNum(collegeNum));
         statistic.setFilledNum(statisticMapper.getAllFilledStudentsByCollegeNum(collegeNum, curTime).size());
         statistic.setHighRiskNum(statisticMapper.getAllHighRiskStudentsByCollegeNum(collegeNum, curTime).size());
@@ -147,12 +149,5 @@ public class StatisticServiceImpl implements StatisticServiceI {
             dtoList.add(dto);
         }
         return dtoList;
-    }
-
-    protected String getDate() {
-        Date date = new Date();
-        String strDateFormat = "yyyy-MM-dd";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(strDateFormat);
-        return simpleDateFormat.format(date);
     }
 }

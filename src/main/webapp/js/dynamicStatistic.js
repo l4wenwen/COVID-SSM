@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $(".state .btn").click(
+    $(".btn").click(
         function () {
             $.ajax({
                 url: $(this).children(".url").html(),
@@ -7,7 +7,6 @@ $(document).ready(function() {
                 type: "POST",
                 success: function (res) {
                     $(".chart .item").remove();
-                    console.log(res.data);
                     for (let index in res.data) {
                         let appendstr = "<tr class='item'>"
                         appendstr += "<td>" + res.data[index]["userName"] + "</td>";

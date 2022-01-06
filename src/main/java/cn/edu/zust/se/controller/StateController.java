@@ -47,6 +47,7 @@ public class StateController {
     public String stateRequest(State state) {
         UserDto user = (UserDto) session.getAttribute("user");
         state.setUserNum(user.getUserNum());
+        stateService.delState(user.getUserNum());
         stateService.addState(state);
         return "stateSuccess";
     }

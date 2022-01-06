@@ -4,5 +4,76 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.zust.se.dao.StateMapper">
     <!-- 目的：为dao接口方法提供sql语句配置 -->
+    <resultMap id="stateMap" type="cn.edu.zust.se.entity.State">
+        <result property="stateNum" column="stateNum"/>
+        <result property="userNum" column="userNum"/>
+        <result property="stateTime" column="stateTime"/>
+        <result property="isTemperature" column="isTemperature"/>
+        <result property="isCovid" column="isCovid"/>
+        <result property="isLikeCovid" column="isLikeCovid"/>
+        <result property="quarantine" column="quarantine"/>
+        <result property="isRecentArea" column="isRecentArea"/>
+        <result property="isRecentCountry" column="isRecentCountry"/>
+        <result property="isRecentPeople" column="isRecentPeople"/>
+        <result property="isSymptom" column="isSymptom"/>
+        <result property="isAbnormal" column="isAbnormal"/>
+        <result property="healthCodeType" column="healthCodeType"/>
+        <result property="isOutSchool" column="isOutSchool"/>
+    </resultMap>
 
+    <select id="getUserState" resultType="Integer">
+        SELECT isCovid FROM state WHERE userNum = #{userNum} AND stateTime = #{stateTime}
+    </select>
+
+    <!--管理员-->
+    <select id="getStateByTime0" resultType="stateMap">
+        SELECT * FROM `state` WHERE stateTime BETWEEN #{startTime} AND #{endTime}
+    </select>
+
+    <!--老师-->
+    <select id="getStateByTime1" resultType="stateMap">
+        SELECT * FROM `state` WHERE userNum IN (SELECT userNum FROM user WHERE collegeNum = #{collegeNum})
+    </select>
+
+    <!--学生-->
+    <select id="getStateByTime2" resultType="stateMap">
+        SELECT * FROM `state` WHERE stateTime BETWEEN #{startTime} AND #{endTime} AND userNum = #{userNum}
+    </select>
+
+    <update id="delState">
+        DELETE FROM `state` WHERE stateNum = #{stateNum} AND userNum = #{userNum}
+    </update>
+
+    <update id="addState">
+        INSERT INTO `state`(stateNum
+                          userNum,
+                          stateTime,
+                          isTemperature,
+                          isCovid,
+                          isLikeCovid,
+                          quarantine,
+                          isRecentArea,
+                          isRecentCountry,
+                          isRecentPeople,
+                          isSymptom,
+                          isAbnormal,
+                          healthCodeType,
+                          isOutSchool,
+                          isOutCity)
+                   VALUES(#{stateNum},
+                          #{userNum},
+                          #{stateTime},
+                          #{isTemperature},
+                          #{isCovid},
+                          #{isLikeCovid},
+                          #{quarantine},
+                          #{isRecentArea},
+                          #{isRecentCountry},
+                          #{isRecentPeople},
+                          #{isSymptom},
+                          #{isAbnormal},
+                          #{healthCodeType},
+                          #{isOutSchool},
+                          #{isOutCity})
+    </update>
 </mapper>

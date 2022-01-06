@@ -42,7 +42,7 @@
     </select>
 
     <update id="delState">
-        DELETE FROM `state` WHERE stateNum = #{stateNum} AND userNum = #{userNum}
+        DELETE FROM `state` WHERE stateTime = #{stateTime} AND userNum = #{userNum}
     </update>
 
     <update id="addState">

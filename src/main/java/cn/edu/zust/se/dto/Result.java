@@ -1,9 +1,13 @@
 package cn.edu.zust.se.dto;
 
+import cn.edu.zust.se.entity.State;
+
+import java.util.List;
+
 /**
  * 封装json对象，所有返回结果都使用它
  */
-public class Result<T> {
+public class Result<T> extends Result<List<State>> {
 
 	private boolean success;// 是否成功标志
 
@@ -38,7 +42,7 @@ public class Result<T> {
 		return data;
 	}
 
-	public void setData(T data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 

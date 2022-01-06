@@ -7,13 +7,14 @@ $(document).ready(function() {
                 type: "POST",
                 success: function (res) {
                     $(".chart .item").remove();
+                    console.log(res.data);
                     for (let index in res.data) {
                         let appendstr = "<tr class='item'>"
                         appendstr += "<td>" + res.data[index]["userName"] + "</td>";
                         appendstr += "<td>" + res.data[index]["userNum"] + "</td>";
                         appendstr += "<td>" + res.data[index]["college"]["collegeName"] + "</td>";
                         appendstr += "<td>" + (res.data[index]["sex"] ? "男" : "女") + "</td>";
-                        appendstr += "<td>" + res.data[index]["state"] + "</td>";
+                        appendstr += "<td>" + (res.data[index]["state"] == null ? '未填写' : (res.data[index]["state"] == 1 ? '高危' : '正常')) + "</td>";
                         appendstr += "<td>" + (res.data[index]["telephone"] == null ? "未填写" : res.data[index]["telephone"]) + "</td>";
                         appendstr += "</tr>";
                         $(".chart").append(appendstr);

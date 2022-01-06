@@ -35,7 +35,6 @@ public class User {
                 ", password='" + password + '\'' +
                 ", sex=" + sex +
                 ", telephone='" + telephone + '\'' +
-                ", state=" + state +
                 ", college=" + college +
                 ", major=" + major +
                 ", vacations=" + vacations +

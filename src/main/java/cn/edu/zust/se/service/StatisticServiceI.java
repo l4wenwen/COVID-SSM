@@ -4,6 +4,7 @@ import cn.edu.zust.se.dto.Result;
 import cn.edu.zust.se.dto.UserDto;
 import cn.edu.zust.se.entity.Statistic;
 import cn.edu.zust.se.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -23,6 +24,11 @@ public interface StatisticServiceI {
     public Result<List<UserDto>> getAllRiskAreaStudents();
 
     public Result<List<UserDto>> getAllRiskAreaStudentsByCollegeNum(String collegeNum);
+
+    public Result<List<UserDto>> getAllStudents();
+
+    public Result<List<UserDto>> getAllStudentsByCollegeNum(String collegeNum);
+
 
     public Result<Statistic> getAllStatistic();
 

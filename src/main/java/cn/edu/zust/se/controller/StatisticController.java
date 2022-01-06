@@ -62,6 +62,18 @@ public class StatisticController {
         return statisticService.getMajorsByCollegeNum(collegeNum).getData();
     }
 
+    @RequestMapping(value = "/studentList", method = {RequestMethod.POST, RequestMethod.GET}, produces = {
+            "application/json; charset=utf-8" })
+    @ResponseBody
+    public Result<List<UserDto>> studentList() {
+        UserDto user = (UserDto) session.getAttribute("user");
+        if (user == null || user.getUserType().equals(2)) return null;
+        if (user.getUserType() == 0)
+            return statisticService.getAllFilledStudents();
+        else
+            return statisticService.getAllFilledStudentsByCollegeNum(user.getCollegeNum().toString());
+    }
+
     @RequestMapping(value = "/filled", method = {RequestMethod.POST, RequestMethod.GET}, produces = {
             "application/json; charset=utf-8" })
     @ResponseBody

@@ -26,17 +26,17 @@
     </select>
 
     <!--管理员-->
-    <select id="getStateByTime0" resultType="stateMap">
+    <select id="getStateByTime0" resultMap="stateMap">
         SELECT * FROM `state` WHERE stateTime BETWEEN #{startTime} AND #{endTime}
     </select>
 
     <!--老师-->
-    <select id="getStateByTime1" resultType="stateMap">
+    <select id="getStateByTime1" resultMap="stateMap">
         SELECT * FROM `state` WHERE userNum IN (SELECT userNum FROM user WHERE collegeNum = #{collegeNum})
     </select>
 
     <!--学生-->
-    <select id="getStateByTime2" resultType="stateMap">
+    <select id="getStateByTime2" resultMap="stateMap">
         SELECT * FROM `state` WHERE stateTime BETWEEN #{startTime} AND #{endTime} AND userNum = #{userNum}
     </select>
 

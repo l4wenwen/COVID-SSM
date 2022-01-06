@@ -104,6 +104,18 @@ public class StatisticServiceImpl implements StatisticServiceI {
     }
 
     @Override
+    public Result<List<UserDto>> getAllStudents() {
+        List<UserDto> list = e2d(statisticMapper.getAllStudents(getDate()));
+        return new Result<List<UserDto>>(true, list);
+    }
+
+    @Override
+    public Result<List<UserDto>> getAllStudentsByCollegeNum(String collegeNum) {
+        List<UserDto> list = e2d(statisticMapper.getAllStudentsByCollegeNum(collegeNum, getDate()));
+        return new Result<List<UserDto>>(true, list);
+    }
+
+    @Override
     public Result<Statistic> getAllStatistic() {
         Statistic statistic = new Statistic();
         String curTime = getDate();

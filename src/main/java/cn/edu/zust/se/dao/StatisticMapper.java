@@ -13,6 +13,10 @@ public interface StatisticMapper {
 
     List<Major> getMajorsByCollegeNum(@Param("collegeNum") String collegeNum);
 
+    List<User> getAllStudents(@Param("queryTime") String queryTime);
+
+    List<User> getAllStudentsByCollegeNum(@Param("collegeNum") String collegeNum, @Param("queryTime") String queryTime);
+
     List<User> getAllFilledStudents(@Param("queryTime") String queryTime);
 
     List<User> getAllFilledStudentsByCollegeNum(@Param("collegeNum") String collegeNum, @Param("queryTime") String queryTime);

@@ -2,6 +2,7 @@ package cn.edu.zust.se.dto;
 
 import cn.edu.zust.se.entity.College;
 import cn.edu.zust.se.entity.Major;
+import cn.edu.zust.se.entity.State;
 import cn.edu.zust.se.entity.Vacation;
 import lombok.Getter;
 import lombok.Setter;

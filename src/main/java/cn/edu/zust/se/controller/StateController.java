@@ -1,6 +1,7 @@
 package cn.edu.zust.se.controller;
 
 import cn.edu.zust.se.dto.Result;
+import cn.edu.zust.se.dto.StateDto;
 import cn.edu.zust.se.dto.UserDto;
 import cn.edu.zust.se.entity.State;
 import cn.edu.zust.se.entity.User;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/state")
@@ -36,6 +39,15 @@ public class StateController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String stateList() {
         if (session.getAttribute("user") == null) return "login";
+        return "stateList";
+    }
+
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    public String stateList(String startTime, String endTime, Model model) {
+        UserDto user = (UserDto) session.getAttribute("user");
+        Integer userType = user.getUserType();
+        Result<List<StateDto>> states = stateService.getStateByTime(startTime, endTime, userType);
+        model.addAttribute(states);
         return "stateList";
     }
 

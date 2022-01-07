@@ -5,6 +5,7 @@ import cn.edu.zust.se.dto.Result;
 import cn.edu.zust.se.dto.StateDto;
 import cn.edu.zust.se.entity.State;
 import cn.edu.zust.se.service.StateServiceI;
+import cn.edu.zust.se.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,16 +22,15 @@ public class StateServiceImpl implements StateServiceI {
     }
 
     @Override
-    public Result<List<StateDto>> getStateByTime(String startTime, String endTime, Integer userType) {
+    public Result<List<StateDto>> getStateByTime(String startTime, String endTime, Integer userType, Integer collegeNum, String userNum) {
         Result<List<StateDto>> result = new Result<>();
         if (userType == 0) {
             result.setData(stateMapper.getStateByTime0(startTime, endTime));
         } else if (userType == 1) {
-            result.setData(stateMapper.getStateByTime1(startTime, endTime));
+            result.setData(stateMapper.getStateByTime1(startTime, endTime, collegeNum));
         } else {
-            result.setData(stateMapper.getStateByTime2(startTime, endTime));
+            result.setData(stateMapper.getStateByTime2(startTime, endTime, userNum));
         }
-        result.setSuccess(true);
         return result;
     }
 
@@ -38,7 +38,7 @@ public class StateServiceImpl implements StateServiceI {
     public Result<Integer> delState(String stateNum, String userNum) {
         Result<Integer> result = new Result<Integer>();
         result.setSuccess(true);
-        result.setData(stateMapper.delState(stateNum, userNum));
+        result.setData(stateMapper.delState(TimeUtil.getDate(), userNum));
         return result;
     }
 

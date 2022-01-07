@@ -7,7 +7,7 @@ import cn.edu.zust.se.entity.State;
 import java.util.List;
 
 public interface StateServiceI {
-    public Result<List<StateDto>> getStateByTime(String startTime, String endTime, Integer userType);
+    public Result<List<StateDto>> getStateByTime(String startTime, String endTime, Integer userType, Integer collegeNum, String userNum);
 
     public Result<Integer> delState(String stateNum, String userNum);
 

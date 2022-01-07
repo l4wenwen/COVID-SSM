@@ -57,18 +57,18 @@
                             <td>${state.stateNum}</td>
                             <td>${state.userNum}</td>
                             <td>${state.stateTime}</td>
-                            <td>${state.temperature == false ? "否" : "是"}</td>
-                            <td>${state.covid == false ? "否" : "是"}</td>
-                            <td>${state.likeCovid == false ? "否" : "是"}</td>
+                            <td>${state.isTemperature == 0 ? "否" : "是"}</td>
+                            <td>${state.isCovid == 0 ? "否" : "是"}</td>
+                            <td>${state.isLikeCovid == 0 ? "否" : "是"}</td>
                             <td>${state.quarantine == 0 ? "未曾隔离" : (state.quarantine == 1 ? "曾隔离，已解除" : (state.quarantine == 2 ? "正在居家隔离" : "正在集中隔离"))}</td>
-                            <td>${state.recentArea == false ? "否" : "是"}</td>
-                            <td>${state.recentCountry == false ? "否" : "是"}</td>
-                            <td>${state.recentPeople == false ? "否" : "是"}</td>
-                            <td>${state.symptom == false ? "否" : "是"}</td>
-                            <td>${state.abnormal == false ? "否" : "是"}</td>
+                            <td>${state.isRecentArea == 0 ? "否" : "是"}</td>
+                            <td>${state.isRecentCountry == 0 ? "否" : "是"}</td>
+                            <td>${state.isRecentPeople == 0 ? "否" : "是"}</td>
+                            <td>${state.isSymptom == 0 ? "否" : "是"}</td>
+                            <td>${state.isAbnormal == 0 ? "否" : "是"}</td>
                             <td>${state.healthCodeType == 0 ? "绿色" : (state.healthCodeType == 1 ? "黄色" : "红色")}</td>
-                            <td>${state.outSchool == false ? "否" : "是"}</td>
-                            <td>${state.outCity == false ? "否" : "是"}</td>
+                            <td>${state.isOutSchool == 0 ? "否" : "是"}</td>
+                            <td>${state.isOutCity == 0 ? "否" : "是"}</td>
                         </tr>
                     </c:forEach>
                 </c:if>

@@ -9,7 +9,9 @@
 <div class="search-warpper">
     <div class="search-form">
         <input type="text" class="search-data" placeholder="Search"/>
-        <button type="submit" class="fas fa-search"></button>
+        <button type="submit" class="btn fas fa-search">
+            <span style="display: none" class="url">/user/search</span>
+        </button>
     </div>
     <div class="loader"><i class="fa fa-spinner fa-spin"></i></div>
 </div>

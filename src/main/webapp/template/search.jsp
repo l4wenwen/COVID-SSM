@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="search-warpper">
     <div class="search-form">
-        <input type="text" class="search-data" placeholder="Search"/>
+        <input type="text" class="search-data" placeholder="Search" name="userName"/>
         <button type="submit" class="btn fas fa-search">
             <span style="display: none" class="url">/user/search</span>
         </button>

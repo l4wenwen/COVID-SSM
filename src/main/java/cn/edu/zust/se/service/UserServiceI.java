@@ -29,4 +29,6 @@ public interface UserServiceI {
     public Result<List<UserDto>> getAllStudentsByCollegeNum(String collegeNum);
 
     public Result<String> addUser(User user);
+
+    public Result<List<UserDto>> searchUserByName(String userName);
 }

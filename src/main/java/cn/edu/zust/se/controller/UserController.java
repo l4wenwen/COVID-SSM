@@ -134,4 +134,14 @@ public class UserController {
         Result<String> result = userService.addUser(u);
         return result.getData();
     }
+
+    @RequestMapping(value = "/search", method = RequestMethod.POST, produces = {
+            "application/json; charset=utf-8" })
+    @ResponseBody
+    public Result<List<UserDto>> userSearch(String userName) {
+        UserDto user = (UserDto) session.getAttribute("user");
+        if (user == null || user.getUserType().equals(2)) return null;
+        System.out.println(userName);
+        return userService.searchUserByName(userName);
+    }
 }

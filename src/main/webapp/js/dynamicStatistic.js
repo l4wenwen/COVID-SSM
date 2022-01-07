@@ -3,6 +3,9 @@ $(document).ready(function() {
         function () {
             $.ajax({
                 url: $(this).children(".url").html(),
+                data: {
+                    userName: $("[name='userName']").val(),
+                },
                 dataType: "json",
                 type: "POST",
                 success: function (res) {

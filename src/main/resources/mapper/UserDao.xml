@@ -67,6 +67,10 @@
         SELECT * FROM user WHERE userType = 2
     </select>
 
+    <select id="searchUserByName" resultMap="userMap">
+        SELECT * FROM user WHERE userType = 2 and userName LIKE "%#{userName}%"
+    </select>
+
     <select id="getAllStudentsByCollegeNum" resultMap="userMap">
         SELECT * FROM user WHERE userType = 2 AND collegeNum = #{collegeNum}
     </select>

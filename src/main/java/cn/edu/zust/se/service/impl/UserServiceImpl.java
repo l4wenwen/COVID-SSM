@@ -213,6 +213,12 @@ public class UserServiceImpl implements UserServiceI {
         return result;
     }
 
+    @Override
+    public Result<List<UserDto>> searchUserByName(String userName) {
+        List<UserDto> list = e2d(userMapper.searchUserByName(userName));
+        return new Result<List<UserDto>>(true, list);
+    }
+
     private List<UserDto> e2d(List<User> pictures) {
         if (pictures == null || pictures.size() == 0) return null;
         List<UserDto> dtoList = new ArrayList<UserDto>();

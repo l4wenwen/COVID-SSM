@@ -9,11 +9,11 @@ public interface VacationServiceI {
 
     List<Vacation> getVacationListById(String userNum);
 
-    List<Vacation> getVacationListByDepId(int collegeNum);
+    List<Vacation> getVacationListByDepId(Integer collegeNum);
 
-    Boolean submitVacationRequest(User user, Vacation vacation);
+    Integer submitVacationRequest(User user, Vacation vacation);
 
-    Boolean revokeRequest(String userNum, int vacationNum);
+    Integer revokeRequest(String userNum, Integer vacationNum);
 
-    Boolean performDecision(int vacationNum, int operation);
+    Integer performDecision(Integer vacationNum, Integer operation);
 }

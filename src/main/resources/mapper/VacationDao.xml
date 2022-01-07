@@ -21,14 +21,10 @@
         </association>
     </resultMap>
 
-    <select id="getUser" resultType="cn.edu.zust.se.entity.User">
-        SELECT *
-        FROM User
-        WHERE userNum = #{userNum}
-    </select>
+
 
     <select id="getVacationListById" resultMap="VacationMap">
-        SELECT u.userName, v.reason, v.startTime, v.endTime, v.way, v.state, v.requestTime
+        SELECT u.userName, v.reason, v.startTime, v.endTime, v.way, v.state, v.requestTime, v.vacationNum, u.userNum
         FROM vacation v,
              user u
         WHERE v.userNum = u.userNum
@@ -36,7 +32,7 @@
     </select>
 
     <select id="getVacationListByDepId" resultMap="VacationMap">
-        SELECT u.userName, v.reason, v.startTime, v.endTime, v.way, v.state, v.requestTime
+        SELECT u.userName, v.reason, v.startTime, v.endTime, v.way, v.state, v.requestTime, v.vacationNum, u.userNum
         FROM vacation v,
              (SELECT userNum, userName FROM user WHERE collegeNum = #{collegeNum}) u
         WHERE v.userNum = u.userNum;
@@ -44,22 +40,34 @@
 
     <insert id="submitVacationRequest">
         INSERT INTO vacation(reason, startTime, endTime, state, userNum, requestTime, way)
-        VALUES (#{reason}, #{startTime}, #{endTime}, #{state}, #{user.userNum}, #{requestTime}, #{way})
+        VALUES (#{vacation.reason}, #{vacation.startTime}, #{vacation.endTime}, #{vacation.state}, #{user.userNum}, #{vacation.requestTime}, #{vacation.way})
     </insert>
 
-    <delete id="revokeRequest" parameterType="int">
+    <select id="queryVacationState" resultType="Integer">
+        SELECT IFNULL(state, -1)
+        FROM vacation
+        WHERE userNum = #{userNum}
+          AND vacationNum = #{vacationNum}
+    </select>
+
+    <update id="deleteVacation">
         DELETE
         FROM vacation
         WHERE userNum = #{userNum}
           AND vacationNum = #{vacationNum}
-          AND state = Vacation.STATE_PENDING
-    </delete>
+    </update>
 
-    <update id="performDecision" parameterType="int">
-        UPDATE vacation
-        SET state = #{operation}
+    <select id="checkVacationPending" resultType="Integer">
+        SELECT count(*)
+        FROM vacation
         WHERE vacationNum = #{vacationNum}
-          AND state = Vacation.STATE_PENDING
+          AND state = 0
+    </select>
+
+    <update id="updateVacationState" parameterType="Integer">
+        UPDATE vacation
+        SET state = #{state}
+        WHERE vacationNum = #{vacationNum}
     </update>
 
 </mapper>

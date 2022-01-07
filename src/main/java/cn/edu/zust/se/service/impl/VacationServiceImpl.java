@@ -4,6 +4,7 @@ import cn.edu.zust.se.dao.VacationMapper;
 import cn.edu.zust.se.entity.User;
 import cn.edu.zust.se.entity.Vacation;
 import cn.edu.zust.se.service.VacationServiceI;
+import cn.edu.zust.se.util.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,20 +25,22 @@ public class VacationServiceImpl implements VacationServiceI {
     }
 
     @Override
-    public List<Vacation> getVacationListByDepId(int collegeNum) {
+    public List<Vacation> getVacationListByDepId(Integer collegeNum) {
         return vacationMapper.getVacationListByDepId(collegeNum);
     }
 
     @Override
-    public Boolean submitVacationRequest(User user, Vacation vacation) {
+    public Integer submitVacationRequest(User user, Vacation vacation) {
+        vacation.setRequestTime(TimeUtil.getDate());
+        vacation.setState(0);
         return vacationMapper.submitVacationRequest(user, vacation);
     }
 
     @Override
-    public Boolean revokeRequest(String userNum, int vacationNum) {
-        int state = vacationMapper.queryVacationState(userNum, vacationNum);
-        if (state == -1) return false;
-        boolean isRevoked = false;
+    public Integer revokeRequest(String userNum, Integer vacationNum) {
+        Integer state = vacationMapper.queryVacationState(userNum, vacationNum);
+        if (state == -1) return 0;
+        Integer isRevoked = 0;
         if (state == Vacation.STATE_PENDING) {
             isRevoked = vacationMapper.deleteVacation(userNum, vacationNum);
         }
@@ -45,9 +48,9 @@ public class VacationServiceImpl implements VacationServiceI {
     }
 
     @Override
-    public Boolean performDecision(int vacationNum, int operation) {
-        boolean ok = vacationMapper.checkVacationPending(vacationNum);
-        if (!ok) return false;
+    public Integer performDecision(Integer vacationNum, Integer operation) {
+        Integer ok = vacationMapper.checkVacationPending(vacationNum);
+        if (ok == 0) return 0;
         return vacationMapper.updateVacationState(vacationNum, operation);
     }
 }

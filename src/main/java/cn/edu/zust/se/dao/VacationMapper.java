@@ -10,15 +10,15 @@ public interface VacationMapper {
 
     List<Vacation> getVacationListById(@Param("userNum") String userNum);
 
-    List<Vacation> getVacationListByDepId(@Param("collegeNum") int collegeNum);
+    List<Vacation> getVacationListByDepId(@Param("collegeNum") Integer collegeNum);
 
-    Boolean submitVacationRequest(@Param("user") User user, @Param("vacation") Vacation vacation);
+    Integer submitVacationRequest(@Param("user") User user, @Param("vacation") Vacation vacation);
 
-    int queryVacationState(@Param("userNum") String userNum, @Param("vacationNum") int vacationNum);
+    Integer queryVacationState(@Param("userNum") String userNum, @Param("vacationNum") Integer vacationNum);
 
-    Boolean deleteVacation(@Param("userNum") String userNum, @Param("vacationNum") int vacationNum);
+    Integer deleteVacation(@Param("userNum") String userNum, @Param("vacationNum") Integer vacationNum);
 
-    Boolean checkVacationPending(@Param("vacationNum") int vacationNum);
+    Integer checkVacationPending(@Param("vacationNum") Integer vacationNum);
 
-    Boolean updateVacationState(@Param("vacationNum") int vacationNum, @Param("state") int state);
+    Integer updateVacationState(@Param("vacationNum") Integer vacationNum, @Param("state") Integer state);
 }

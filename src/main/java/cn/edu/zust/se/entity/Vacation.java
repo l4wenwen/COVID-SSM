@@ -20,4 +20,18 @@ public class Vacation {
     public static final int STATE_PENDING = 0;
     public static final int STATE_REJECT = 1;
     public static final int STATE_ACCEPT = 2;
+
+    @Override
+    public String toString() {
+        return "Vacation{" +
+                "vacationNum=" + vacationNum +
+                ", reason='" + reason + '\'' +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", requestTime='" + requestTime + '\'' +
+                ", way='" + way + '\'' +
+                ", state=" + state +
+                ", user=" + user +
+                '}';
+    }
 }

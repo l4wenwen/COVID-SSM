@@ -14,17 +14,18 @@
         <result column="requestTime" property="requestTime"/>
         <result column="way" property="way"/>
         <result column="state" property="state"/>
-        <association property="user" column="userNum" javaType="cn.edu.zust.se.entity.User" select="getUser"/>
-<!--        <association property="user" javaType="cn.edu.zust.se.entity.User">-->
-<!--            <result column="userNum" property="userNum"/>-->
-<!--            <result column="userName" property="userName"/>-->
-<!--        </association>-->
+        <association property="user" javaType="cn.edu.zust.se.entity.User">
+            <id column="userNum" property="userNum"/>
+            <result column="userName" property="userName"/>
+        </association>
     </resultMap>
+
     <select id="getUser" resultType="cn.edu.zust.se.entity.User">
-        SELECT * FROM User WHERE userNum = #{userNum}
+        SELECT *
+        FROM User
+        WHERE userNum = #{userNum}
     </select>
 
-    <!-- 目的：为dao接口方法提供sql语句配置 -->
     <select id="getVacationListById" resultMap="VacationMap">
         SELECT u.userName, v.reason, v.startTime, v.endTime, v.way, v.state, v.requestTime
         FROM vacation v,
@@ -40,9 +41,9 @@
         WHERE v.userNum = u.userNum;
     </select>
 
-    <insert id="submitVacationRequest" parameterType="VacationMap">
+    <insert id="submitVacationRequest">
         INSERT INTO vacation(reason, startTime, endTime, state, userNum, requestTime, way)
-        VALUES (#{reason}, #{startTime}, #{endTime}, #{state}, #{userNum}, #{requestTime}, #{way})
+        VALUES (#{reason}, #{startTime}, #{endTime}, #{state}, #{user.userNum}, #{requestTime}, #{way})
     </insert>
 
     <delete id="revokeRequest" parameterType="int">

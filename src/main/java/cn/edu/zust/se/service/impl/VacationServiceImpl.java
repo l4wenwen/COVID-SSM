@@ -30,12 +30,12 @@ public class VacationServiceImpl implements VacationServiceI {
     }
 
     @Override
-    public boolean submitVacationRequest(User user, Vacation vacation) {
+    public Boolean submitVacationRequest(User user, Vacation vacation) {
         return vacationMapper.submitVacationRequest(user, vacation);
     }
 
     @Override
-    public boolean revokeRequest(String userNum, String vacationNum) {
+    public Boolean revokeRequest(String userNum, int vacationNum) {
         int state = vacationMapper.queryVacationState(userNum, vacationNum);
         if (state == -1) return false;
         boolean isRevoked = false;
@@ -46,7 +46,7 @@ public class VacationServiceImpl implements VacationServiceI {
     }
 
     @Override
-    public boolean performDecision(int vacationNum, int operation) {
+    public Boolean performDecision(int vacationNum, int operation) {
         boolean ok = vacationMapper.checkVacationPending(vacationNum);
         if (!ok) return false;
         return vacationMapper.updateVacationState(vacationNum, operation);

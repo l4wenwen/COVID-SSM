@@ -11,13 +11,13 @@ public interface VacationMapper {
 
     List<Vacation> getVacationListByDepId(@Param("collegeNum") int collegeNum);
 
-    boolean submitVacationRequest(User user, Vacation vacation);
+    Boolean submitVacationRequest(@Param("user") User user, @Param("vacation") Vacation vacation);
 
-    int queryVacationState(@Param("userNum") String userNum, @Param("vacationNum") String vacationNum);
+    int queryVacationState(@Param("userNum") String userNum, @Param("vacationNum") int vacationNum);
 
-    boolean deleteVacation(@Param("userNum") String userNum, @Param("vacationNum") String vacationNum);
+    Boolean deleteVacation(@Param("userNum") String userNum, @Param("vacationNum") int vacationNum);
 
-    boolean checkVacationPending(@Param("vacationNum") int vacationNum);
+    Boolean checkVacationPending(@Param("vacationNum") int vacationNum);
 
-    boolean updateVacationState(@Param("vacationNum") int vacationNum, @Param("state") int state);
+    Boolean updateVacationState(@Param("vacationNum") int vacationNum, @Param("state") int state);
 }

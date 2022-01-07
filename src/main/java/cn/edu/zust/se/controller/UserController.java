@@ -148,6 +148,10 @@ public class UserController {
         UserDto user = (UserDto) session.getAttribute("user");
         if (user == null || user.getUserType().equals(2)) return null;
         System.out.println(userName);
-        return userService.searchUserByName(userName);
+        if (user.getUserType() == 0) {
+            return userService.searchUserByName(userName);
+        } else {
+            return userService.searchUserByNameAndCollegeNum(userName, user.getCollegeNum());
+        }
     }
 }

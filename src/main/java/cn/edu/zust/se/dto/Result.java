@@ -2,12 +2,13 @@ package cn.edu.zust.se.dto;
 
 import cn.edu.zust.se.entity.State;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * 封装json对象，所有返回结果都使用它
  */
-public class Result<T> {
+public class Result<T> implements Serializable {
 
 	private boolean success;// 是否成功标志
 

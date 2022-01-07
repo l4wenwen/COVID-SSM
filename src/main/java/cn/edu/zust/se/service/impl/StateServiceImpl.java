@@ -3,6 +3,7 @@ package cn.edu.zust.se.service.impl;
 import cn.edu.zust.se.dao.StateMapper;
 import cn.edu.zust.se.dto.Result;
 import cn.edu.zust.se.dto.StateDto;
+import cn.edu.zust.se.entity.Area;
 import cn.edu.zust.se.entity.State;
 import cn.edu.zust.se.service.StateServiceI;
 import cn.edu.zust.se.util.TimeUtil;
@@ -56,5 +57,20 @@ public class StateServiceImpl implements StateServiceI {
         result.setSuccess(true);
         stateMapper.addState(state);
         return result;
+    }
+
+    @Override
+    public Result<Integer> addArea(String areaName) {
+        return new Result<>(true, stateMapper.addArea(areaName));
+    }
+
+    @Override
+    public Result<List<Area>> getAllArea() {
+        return new Result<>(true, stateMapper.getAllArea());
+    }
+
+    @Override
+    public Result<Integer> delArea(Integer areaNum) {
+        return new Result<>(true, stateMapper.delArea(areaNum));
     }
 }

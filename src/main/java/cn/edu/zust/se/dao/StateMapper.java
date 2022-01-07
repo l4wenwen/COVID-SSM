@@ -1,6 +1,7 @@
 package cn.edu.zust.se.dao;
 
 import cn.edu.zust.se.dto.StateDto;
+import cn.edu.zust.se.entity.Area;
 import cn.edu.zust.se.entity.State;
 import org.apache.ibatis.annotations.Param;
 
@@ -15,5 +16,11 @@ public interface StateMapper {
 
     Integer getUserState(@Param("userNum") String userNum, @Param("stateTime") String stateTime);
 
+    Integer addArea(@Param("areaName") String areaName);
+
     Boolean addState(State state);
+
+    List<Area> getAllArea();
+
+    Integer delArea(Integer areaNum);
 }

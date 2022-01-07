@@ -71,6 +71,10 @@
         SELECT * FROM user WHERE userType = 2 and userName LIKE concat('%',#{userName},'%')
     </select>
 
+    <select id="searchUserByNameAndCollegeNum" resultMap="userMap">
+        SELECT * FROM user WHERE userType = 2 and userName LIKE concat('%',#{userName},'%') and collegeNum = ${collegeNum}
+    </select>
+
     <select id="getAllStudentsByCollegeNum" resultMap="userMap">
         SELECT * FROM user WHERE userType = 2 AND collegeNum = #{collegeNum}
     </select>

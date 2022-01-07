@@ -44,7 +44,29 @@
         <jsp:param name="position" value="每日打卡" />
         <jsp:param name="userName" value="${sessionScope.user.userName}" />
     </jsp:include>
+
     <div class="content">
+
+        <fieldset class="check-in-box">
+            <!-- Form Name -->
+            <legend>风险地区列表</legend>
+            <table class="chart">
+                <tr class="title">
+                    <th>编号</th>
+                    <th>风险地区名称</th>
+                </tr>
+
+                <c:if test="${not empty requestScope.riskArea}">
+                    <c:forEach var="area" items="${requestScope.riskArea}" >
+                        <tr class="item">
+                            <td>${area.areaNum}</td>
+                            <td>${area.areaName}</td>
+                        </tr>
+                    </c:forEach>
+                </c:if>
+            </table>
+        </fieldset>
+
         <form action="${pageContext.request.contextPath}/state/request" method="post" class="form-horizontal">
             <fieldset class="check-in-box">
                 <!-- Form Name -->

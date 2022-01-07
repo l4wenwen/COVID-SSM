@@ -41,8 +41,20 @@
         SELECT * FROM `state` WHERE stateTime BETWEEN #{startTime} AND #{endTime} AND userNum = #{userNum}
     </select>
 
+    <select id="getAllArea" resultType="cn.edu.zust.se.entity.Area">
+        SELECT * FROM area
+    </select>
+
     <update id="delState">
         DELETE FROM `state` WHERE stateTime = #{stateTime} AND userNum = #{userNum}
+    </update>
+
+    <update id="addArea">
+        INSERT INTO area(areaName) VALUES (#{areaName})
+    </update>
+
+    <update id="delArea">
+        DELETE FROM area WHERE areaNum = #{areaNum}
     </update>
 
     <update id="addState">

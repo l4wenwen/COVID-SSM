@@ -16,6 +16,8 @@ public interface UserMapper {
 
     List<User> searchUserByName(@Param("userName") String userName);
 
+    List<User> searchUserByNameAndCollegeNum(@Param("userName") String userName, @Param("collegeNum") Integer collegeNum);
+
     List<User> getAllStudentsByCollegeNum(@Param("collegeNum") String collegeNum);
 
     Boolean updateUserTelephone(@Param("telephone") String telephone, @Param("userNum") String userNum);

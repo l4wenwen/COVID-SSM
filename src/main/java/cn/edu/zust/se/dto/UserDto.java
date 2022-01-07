@@ -7,11 +7,12 @@ import cn.edu.zust.se.entity.Vacation;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
 @Setter
-public class UserDto {
+public class UserDto implements Serializable {
     private String userNum;
     private Integer collegeNum;
     private Integer majorNum;

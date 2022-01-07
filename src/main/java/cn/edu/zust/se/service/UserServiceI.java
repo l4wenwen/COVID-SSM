@@ -31,4 +31,6 @@ public interface UserServiceI {
     public Result<String> addUser(User user);
 
     public Result<List<UserDto>> searchUserByName(String userName);
+
+    public Result<List<UserDto>> searchUserByNameAndCollegeNum(String userName, Integer collegeNum);
 }

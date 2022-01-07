@@ -3,9 +3,11 @@ package cn.edu.zust.se.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
-public class StateDto {
+public class StateDto implements Serializable {
     private Integer stateNum;
     private String userNum;
     private String stateTime;

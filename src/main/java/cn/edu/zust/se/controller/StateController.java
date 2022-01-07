@@ -42,6 +42,27 @@ public class StateController {
         return "stateList";
     }
 
+    @RequestMapping(value = "/manager", method = RequestMethod.GET)
+    public String stateManager(Model model) {
+        if (session.getAttribute("user") == null) return "login";
+        model.addAttribute("riskArea", stateService.getAllArea().getData());
+        return "stateManager";
+    }
+
+    @RequestMapping(value = "/addArea", method = {RequestMethod.GET, RequestMethod.POST})
+    public String addArea(String areaName) {
+        if (session.getAttribute("user") == null) return "login";
+        stateService.addArea(areaName);
+        return "redirect:/state/manager";
+    }
+
+    @RequestMapping(value = "/delArea", method = {RequestMethod.GET, RequestMethod.POST})
+    public String delArea(Integer areaNum) {
+        if (session.getAttribute("user") == null) return "login";
+        stateService.delArea(areaNum);
+        return "redirect:/state/manager";
+    }
+
     @RequestMapping(value = "/list", method = RequestMethod.POST)
     public String stateList(String startTime, String endTime, Model model) {
         UserDto user = (UserDto) session.getAttribute("user");
@@ -51,10 +72,18 @@ public class StateController {
         return "stateList";
     }
 
+    @RequestMapping(value = "/riskarea", method = {RequestMethod.GET, RequestMethod.POST})
+    public String riskArea(Model model) {
+        UserDto user = (UserDto) session.getAttribute("user");
+        if (user == null) return "login";
+        model.addAttribute("riskArea", stateService.getAllArea().getData());
+        return "stateRequest";
+    }
+
     @RequestMapping(value = "/request", method = RequestMethod.GET)
     public String stateRequest() {
         if (session.getAttribute("user") == null) return "login";
-        return "stateRequest";
+        return "redirect:/state/riskarea";
     }
 
     @RequestMapping(value = "/request", method = RequestMethod.POST)

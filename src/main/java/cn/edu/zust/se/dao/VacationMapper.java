@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface VacationMapper {
+
     List<Vacation> getVacationListById(@Param("userNum") String userNum);
 
     List<Vacation> getVacationListByDepId(@Param("collegeNum") int collegeNum);

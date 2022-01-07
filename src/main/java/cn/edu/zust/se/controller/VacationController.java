@@ -68,24 +68,24 @@ public class VacationController {
         }
     }
 
-//    //用户撤销请求
-//    @RequestMapping("/revoke/{userNum}/{vacationNum}")
-//    public String revoke(@PathVariable("userNum") String uid, @PathVariable("vacationNum") int vid, HttpServletRequest request) {
-//        if (!vacationService.revokeRequest(uid, vid))
-//            request.setAttribute("message", "撤回失败，请求已经完成。");
-//        return "redirect:/vacation/list";
-//    }
-//
+    //用户撤销请求
+    @RequestMapping("/revoke/{userNum}/{vacationNum}")
+    public String revoke(@PathVariable("userNum") String uid, @PathVariable("vacationNum") int vid, HttpServletRequest request) {
+        if (!vacationService.revokeRequest(uid, vid))
+            request.setAttribute("message", "撤回失败，请求已经完成。");
+        return "redirect:/vacation/list";
+    }
+
     //处理请假
-//    @RequestMapping("/operate/{vid}/{operation}")
-//    public String operate(@PathVariable("vid") int vid, @PathVariable("operation") int operation) {
-//        UserDto user = (UserDto) session.getAttribute("user");
-//        if (user.getUserType() == 2) return "forward:/vacation/list";
-//        if (user.getUserType() == 0) return "redirect:/user/userHome";
-//        else {
-//            vacationService.performDecision(vid, operation);
-//            return "forward:/vacation/list";
-//        }
-//    }
+    @RequestMapping("/operate/{vid}/{operation}")
+    public String operate(@PathVariable("vid") int vid, @PathVariable("operation") int operation) {
+        UserDto user = (UserDto) session.getAttribute("user");
+        if (user.getUserType() == 2) return "forward:/vacation/list";
+        if (user.getUserType() == 0) return "redirect:/user/userHome";
+        else {
+            vacationService.performDecision(vid, operation);
+            return "forward:/vacation/list";
+        }
+    }
 
 }

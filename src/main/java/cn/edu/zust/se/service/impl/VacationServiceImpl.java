@@ -11,7 +11,6 @@ import java.util.List;
 
 @Service
 public class VacationServiceImpl implements VacationServiceI {
-
     VacationMapper vacationMapper;
 
     @Autowired

@@ -13,9 +13,9 @@
     <context:component-scan base-package="cn.edu.zust.se.service" />
 
     <!--将我们的所有业务类,注入到Spring,可以通过配置,或者注解实现-->
-<!--    <bean id="vacationServiceImpl" class="cn.edu.zust.se.service.impl.VacationServiceImpl">-->
-<!--        <property name="vacationMapper" ref="vacationMapper"/>-->
-<!--    </bean>-->
+    <bean id="vacationServiceImpl" class="cn.edu.zust.se.service.impl.VacationServiceImpl">
+        <property name="vacationMapper" ref="vacationMapper"/>
+    </bean>
 
     <!-- 配置事务管理器 -->
     <bean id="transactionManager"

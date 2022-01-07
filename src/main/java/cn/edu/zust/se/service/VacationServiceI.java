@@ -6,6 +6,7 @@ import cn.edu.zust.se.entity.Vacation;
 import java.util.List;
 
 public interface VacationServiceI {
+
     List<Vacation> getVacationListById(String userNum);
 
     List<Vacation> getVacationListByDepId(int collegeNum);

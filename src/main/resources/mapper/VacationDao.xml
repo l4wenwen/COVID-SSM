@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.zust.se.dao.VacationMapper">
 
+
     <!--结果集映射-->
     <resultMap id="VacationMap" type="cn.edu.zust.se.entity.Vacation">
         <!--column数据库中的字段，property实体类的属性-->

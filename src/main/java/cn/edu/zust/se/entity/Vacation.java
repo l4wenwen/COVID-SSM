@@ -1,5 +1,13 @@
 package cn.edu.zust.se.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Vacation {
     private Integer vacationNum;
     private String reason;

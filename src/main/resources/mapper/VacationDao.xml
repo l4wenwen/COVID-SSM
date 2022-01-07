@@ -4,60 +4,62 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.edu.zust.se.dao.VacationMapper">
 
+
     <!--结果集映射-->
-<!--    <resultMap id="VacationMap" type="cn.edu.zust.se.entity.Vacation">-->
-<!--        &lt;!&ndash;column数据库中的字段，property实体类的属性&ndash;&gt;-->
-<!--        <result column="vacationNum" property="vacationNum"/>-->
-<!--        <result column="reason" property="reason"/>-->
-<!--        <result column="startTime" property="startTime"/>-->
-<!--        <result column="endTime" property="endTime"/>-->
-<!--        <result column="requestTime" property="requestTime"/>-->
-<!--        <result column="way" property="way"/>-->
-<!--        <result column="state" property="state"/>-->
-<!--        <association property="user" column="userNum" javaType="cn.edu.zust.se.entity.User" select="getUser"/>-->
-<!--&lt;!&ndash;        <association property="user" javaType="cn.edu.zust.se.entity.User">&ndash;&gt;-->
-<!--&lt;!&ndash;            <result column="userNum" property="userNum"/>&ndash;&gt;-->
-<!--&lt;!&ndash;            <result column="userName" property="userName"/>&ndash;&gt;-->
-<!--&lt;!&ndash;        </association>&ndash;&gt;-->
-<!--    </resultMap>-->
-<!--    <select id="getUser" resultType="cn.edu.zust.se.entity.User">-->
-<!--        SELECT * FROM User WHERE userNum = #{userNum}-->
-<!--    </select>-->
+    <resultMap id="VacationMap" type="cn.edu.zust.se.entity.Vacation">
+        <!--column数据库中的字段，property实体类的属性-->
+        <result column="vacationNum" property="vacationNum"/>
+        <result column="reason" property="reason"/>
+        <result column="startTime" property="startTime"/>
+        <result column="endTime" property="endTime"/>
+        <result column="requestTime" property="requestTime"/>
+        <result column="way" property="way"/>
+        <result column="state" property="state"/>
+        <association property="user" javaType="cn.edu.zust.se.entity.User">
+            <id column="userNum" property="userNum"/>
+            <result column="userName" property="userName"/>
+        </association>
+    </resultMap>
 
-<!--    &lt;!&ndash; 目的：为dao接口方法提供sql语句配置 &ndash;&gt;-->
-<!--    <select id="getVacationListById" resultMap="VacationMap">-->
-<!--        SELECT u.userName, v.reason, v.startTime, v.endTime, v.way, v.state, v.requestTime-->
-<!--        FROM vacation v,-->
-<!--             user u-->
-<!--        WHERE v.userNum = u.userNum-->
-<!--          AND u.userNum = #{userNum};-->
-<!--    </select>-->
+    <select id="getUser" resultType="cn.edu.zust.se.entity.User">
+        SELECT *
+        FROM User
+        WHERE userNum = #{userNum}
+    </select>
 
-<!--    <select id="getVacationListByDepId" resultMap="VacationMap">-->
-<!--        SELECT u.userName, v.reason, v.startTime, v.endTime, v.way, v.state, v.requestTime-->
-<!--        FROM vacation v,-->
-<!--             (SELECT userNum, userName FROM user WHERE collegeNum = #{collegeNum}) u-->
-<!--        WHERE v.userNum = u.userNum;-->
-<!--    </select>-->
+    <select id="getVacationListById" resultMap="VacationMap">
+        SELECT u.userName, v.reason, v.startTime, v.endTime, v.way, v.state, v.requestTime
+        FROM vacation v,
+             user u
+        WHERE v.userNum = u.userNum
+          AND u.userNum = #{userNum};
+    </select>
 
-<!--    <insert id="submitVacationRequest" parameterType="VacationMap">-->
-<!--        INSERT INTO vacation(reason, startTime, endTime, state, userNum, requestTime, way)-->
-<!--        VALUES (#{reason}, #{startTime}, #{endTime}, #{state}, #{userNum}, #{requestTime}, #{way})-->
-<!--    </insert>-->
+    <select id="getVacationListByDepId" resultMap="VacationMap">
+        SELECT u.userName, v.reason, v.startTime, v.endTime, v.way, v.state, v.requestTime
+        FROM vacation v,
+             (SELECT userNum, userName FROM user WHERE collegeNum = #{collegeNum}) u
+        WHERE v.userNum = u.userNum;
+    </select>
 
-<!--    <delete id="revokeRequest" parameterType="int">-->
-<!--        DELETE-->
-<!--        FROM vacation-->
-<!--        WHERE userNum = #{userNum}-->
-<!--          AND vacationNum = #{vacationNum}-->
-<!--          AND state = Vacation.STATE_PENDING-->
-<!--    </delete>-->
+    <insert id="submitVacationRequest">
+        INSERT INTO vacation(reason, startTime, endTime, state, userNum, requestTime, way)
+        VALUES (#{reason}, #{startTime}, #{endTime}, #{state}, #{user.userNum}, #{requestTime}, #{way})
+    </insert>
 
-<!--    <update id="performDecision" parameterType="int">-->
-<!--        UPDATE vacation-->
-<!--        SET state = #{operation}-->
-<!--        WHERE vacationNum = #{vacationNum}-->
-<!--          AND state = Vacation.STATE_PENDING-->
-<!--    </update>-->
+    <delete id="revokeRequest" parameterType="int">
+        DELETE
+        FROM vacation
+        WHERE userNum = #{userNum}
+          AND vacationNum = #{vacationNum}
+          AND state = Vacation.STATE_PENDING
+    </delete>
+
+    <update id="performDecision" parameterType="int">
+        UPDATE vacation
+        SET state = #{operation}
+        WHERE vacationNum = #{vacationNum}
+          AND state = Vacation.STATE_PENDING
+    </update>
 
 </mapper>

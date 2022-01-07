@@ -43,7 +43,7 @@ public class StatisticController {
             Statistic statistic = statisticService.getAllStatisticByCollegeNum(user.getCollegeNum().toString()).getData();
             model.addAttribute("statistic", statistic);
         }
-        return "forward:/user/userHome";
+        return "userHome";
     }
 
     @RequestMapping(value = "/college", method = RequestMethod.POST, produces = {

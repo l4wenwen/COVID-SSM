@@ -73,6 +73,6 @@ public class StateController {
         UserDto user = (UserDto) session.getAttribute("user");
         if (user == null) return "login";
         model.addAttribute("state", stateService.getUserState(user.getUserNum(), TimeUtil.getDate()).getData());
-        return "forward:/user/userHome";
+        return "userHome";
     }
 }

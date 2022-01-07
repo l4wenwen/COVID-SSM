@@ -68,7 +68,7 @@
     </select>
 
     <select id="searchUserByName" resultMap="userMap">
-        SELECT * FROM user WHERE userType = 2 and userName LIKE "%#{userName}%"
+        SELECT * FROM user WHERE userType = 2 and userName LIKE concat('%',#{userName,jdbcType=VARCHAR}),'%'))
     </select>
 
     <select id="getAllStudentsByCollegeNum" resultMap="userMap">

@@ -47,12 +47,7 @@ public class UserController {
             return "login";
         }
         session.setAttribute("user", result.getData());
-        if (result.getData().getUserType() == 2) {
-            return "redirect:/state/getstate";
-        } else {
-            return "redirect:/statistic/all";
-        }
-
+        return "redirect:/user/userHome";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -63,9 +58,15 @@ public class UserController {
 
     @RequestMapping(value = "/userHome", method = RequestMethod.GET)
     public String userHome() {
-        if (session.getAttribute("user") == null) return "login";
-        return "userHome";
+        UserDto user = (UserDto) session.getAttribute("user");
+        if (user == null) return "login";
+        if (user.getUserType() == 2) {
+            return "redirect:/state/getstate";
+        } else {
+            return "redirect:/statistic/all";
+        }
     }
+
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String userProfile(Model model) {

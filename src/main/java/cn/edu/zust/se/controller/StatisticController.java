@@ -69,9 +69,9 @@ public class StatisticController {
         UserDto user = (UserDto) session.getAttribute("user");
         if (user == null || user.getUserType().equals(2)) return null;
         if (user.getUserType() == 0)
-            return statisticService.getAllFilledStudents();
+            return statisticService.getAllStudents();
         else
-            return statisticService.getAllFilledStudentsByCollegeNum(user.getCollegeNum().toString());
+            return statisticService.getAllStudentsByCollegeNum(user.getCollegeNum().toString());
     }
 
     @RequestMapping(value = "/filled", method = {RequestMethod.POST, RequestMethod.GET}, produces = {

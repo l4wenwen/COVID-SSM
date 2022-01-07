@@ -47,7 +47,12 @@ public class UserController {
             return "login";
         }
         session.setAttribute("user", result.getData());
-        return "redirect:/user/userHome";
+        if (result.getData().getUserType() == 2) {
+            return "redirect:/state/getstate";
+        } else {
+            return "redirect:/statistic/all";
+        }
+
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)

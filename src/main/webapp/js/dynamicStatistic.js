@@ -4,7 +4,7 @@ $(document).ready(function() {
             $.ajax({
                 url: $(this).children(".url").html(),
                 data: {
-                    userName: $("[name='userName']").val(),
+                    userName: $(this).prev().val(),
                 },
                 dataType: "json",
                 type: "POST",
